@@ -247,7 +247,7 @@ img { display: block; max-width: 100%; }
 
 .plate-img-bg {
   position: absolute;
-  background-image: url('plates.png');
+  background-image: url('Images/plates.png');
   background-repeat: no-repeat;
   filter: invert(1) sepia(0.15) brightness(0.58) contrast(1.2);
   transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
@@ -1086,6 +1086,56 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--amber);
 }
+
+/* ─── MOBILE NAV DRAWER ─── */
+.mobile-nav-overlay {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: rgba(8,8,8,0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.mobile-nav-overlay.open { display: block; }
+.mobile-nav-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 195;
+  width: min(300px, 85vw);
+  background: #0d0d0d; border-left: 1px solid var(--border2);
+  padding: 72px 28px 40px;
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  overflow-y: auto;
+}
+.mobile-nav-drawer.open { transform: translateX(0); }
+.mob-nav-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: 1px solid var(--border2); border-radius: 4px;
+  color: var(--muted); cursor: pointer; padding: 5px 12px; font-size: 12px;
+  font-family: 'Inter', sans-serif; transition: all 0.2s;
+}
+.mob-nav-close:hover { color: var(--fg); border-color: var(--fg); }
+.mob-nav-link {
+  display: block; padding: 15px 0;
+  font-size: 15px; font-weight: 600; color: var(--muted);
+  border-bottom: 1px solid var(--border); text-decoration: none;
+  transition: color 0.2s;
+}
+.mob-nav-link:active, .mob-nav-link:hover { color: var(--fg); }
+.mob-nav-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.mob-nav-btns .n-btn { width: 100%; text-align: center; padding: 12px 18px; font-size: 14px; }
+
+/* ─── MOBILE HERO FONT FIX ─── */
+@media (max-width: 480px) {
+  .hero-h1 { font-size: clamp(32px, 10.5vw, 50px) !important; }
+}
+
+/* ─── MOBILE FOCUS RAIL ─── */
+@media (max-width: 768px) {
+  .focus-rail { height: 380px; touch-action: pan-y; }
+  .fr-card { width: min(86vw, 420px); }
+  .fr-stage { padding-bottom: 110px; }
+  .fr-footer { padding: 0 16px 20px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .fr-title { font-size: 18px; }
+  .fr-desc { font-size: 13px; max-width: 100%; }
+  .fr-controls { align-self: flex-end; }
+}
 </style>
 </head>
 <body>
@@ -1115,10 +1165,26 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
     <button class="n-btn" onclick="openLoginModal()">Log In</button>
     <button class="n-btn solid" onclick="openCalendly()">Book Demo</button>
   </div>
-  <button class="nav-hamburger" onclick="showToast('Open on desktop for full nav')">
+  <button class="nav-hamburger" onclick="openMobileNav()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- ─── MOBILE NAV DRAWER ─── -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile navigation">
+  <button class="mob-nav-close" onclick="closeMobileNav()">✕ Close</button>
+  <a class="mob-nav-link" href="#plates" onclick="closeMobileNav()">Platform</a>
+  <a class="mob-nav-link" href="#how" onclick="closeMobileNav()">How It Works</a>
+  <a class="mob-nav-link" href="#integrations" onclick="closeMobileNav()">Integrations</a>
+  <a class="mob-nav-link" href="#model" onclick="closeMobileNav()">Engagement</a>
+  <a class="mob-nav-link" href="#contact-form-section" onclick="closeMobileNav()">Contact</a>
+  <a class="mob-nav-link" href="about.html">About</a>
+  <div class="mob-nav-btns">
+    <button class="n-btn" onclick="closeMobileNav(); openLoginModal()">Log In</button>
+    <button class="n-btn solid" onclick="closeMobileNav(); openCalendly()">Book Demo</button>
+  </div>
+</div>
 
 <!-- ─── HERO ─── -->
 <section id="hero">
@@ -1984,7 +2050,7 @@ function closeLegal(e) {
   }
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeLegal(null); closeLoginModal(null); closePhaseModal(); }
+  if (e.key === 'Escape') { closeLegal(null); closeLoginModal(null); closePhaseModal(); closeMobileNav(); }
 });
 
 // ── CALENDLY ──
@@ -2222,6 +2288,37 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     setup();
   }
 })();
+
+// ── MOBILE NAV ──
+function openMobileNav() {
+  document.getElementById('mobileNavOverlay').classList.add('open');
+  document.getElementById('mobileNavDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileNav() {
+  document.getElementById('mobileNavOverlay').classList.remove('open');
+  document.getElementById('mobileNavDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── FOCUS RAIL TOUCH SWIPE ──
+(function() {
+  const rail = document.getElementById('focusRail');
+  if (!rail) return;
+  let startX = 0, startY = 0;
+  rail.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  rail.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      frGo(frActive + (dx < 0 ? 1 : -1));
+    }
+  }, { passive: true });
+})();
+
 </script>
 </body>
 </html>
