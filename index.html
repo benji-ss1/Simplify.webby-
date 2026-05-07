@@ -123,57 +123,39 @@ img { display: block; max-width: 100%; }
 .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav-hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg); margin: 5px 0; }
 
-/* ─── HERO ─── */
+/* ─── HERO / MISSION ─── */
 #hero {
   min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: 140px 40px 60px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 120px 40px 80px; position: relative; overflow: hidden;
+  text-align: center;
 }
-#hero::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
-}
-.hero-eyebrow {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--amber);
-  display: flex; align-items: center; gap: 14px; margin-bottom: 36px;
-  opacity: 0; transform: translateY(12px);
-  animation: fadeUp 0.8s 0.8s ease-out forwards;
-}
-.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
-.hero-h1 {
+.mission-h1 {
   font-family: var(--display);
-  font-size: clamp(52px, 8vw, 144px);
-  font-weight: 800; line-height: 0.92; letter-spacing: -0.045em;
-  max-width: 1100px;
+  font-size: clamp(48px, 8vw, 128px);
+  font-weight: 800; line-height: 1.0; letter-spacing: -0.04em;
+  max-width: 1200px; margin: 0 auto;
+  opacity: 0; animation: fadeUp 1s 0.6s ease-out forwards;
 }
-.hero-line { display: block; overflow: hidden; }
-.hero-line-inner {
-  display: block; transform: translateY(110%);
-  animation: slideUp 1s cubic-bezier(0.22,1,0.36,1) forwards;
+.mission-static { display: block; color: var(--fg); }
+.mission-phrase-outer { display: block; overflow: hidden; }
+.mission-phrase {
+  display: block; color: var(--amber);
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
 }
-.hero-line:nth-child(1) .hero-line-inner { animation-delay: 0.6s; }
-.hero-line:nth-child(2) .hero-line-inner { animation-delay: 0.75s; }
-.hero-line:nth-child(3) .hero-line-inner { animation-delay: 0.9s; color: var(--muted); }
+.mission-eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 16px; justify-content: center;
+  margin-top: 56px;
+  opacity: 0; animation: fadeUp 0.8s 1.2s ease-out forwards;
+}
+.mission-eyebrow::before, .mission-eyebrow::after {
+  content: ''; display: inline-block; width: 44px; height: 1px;
+  background: var(--muted); opacity: 0.35;
+}
 @keyframes slideUp { to { transform: translateY(0); } }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-.hero-bottom {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px; align-items: end;
-  border-top: 1px solid var(--border); padding-top: 32px; margin-top: 64px;
-  opacity: 0; transform: translateY(12px);
-  animation: fadeUp 0.9s 1.2s ease-out forwards;
-}
-.hero-desc { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 380px; }
-.hero-stats { display: flex; gap: 40px; justify-content: center; }
-.hero-stat-n { font-family: var(--num); font-size: 44px; letter-spacing: 0.01em; line-height: 1; }
-.hero-stat-l { font-size: 11px; color: var(--muted); margin-top: 4px; }
-.hero-ctas { display: flex; gap: 10px; justify-content: flex-end; }
 .btn {
   padding: 13px 26px; border-radius: 5px; font-size: 14px; font-weight: 600;
   cursor: pointer; border: 1px solid; transition: all 0.2s;
@@ -868,7 +850,8 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 }
 @media (max-width: 768px) {
   .section, #hero, #cta, footer { padding-left: 20px; padding-right: 20px; }
-  #hero { padding-top: 120px; }
+  #hero { padding-top: 100px; padding-bottom: 60px; }
+  .mission-h1 { font-size: clamp(36px, 10vw, 64px); }
   #nav { padding: 0 20px; }
   .nav-links { display: none; }
   .n-btn:not(.solid) { display: none; }
@@ -1186,26 +1169,15 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   </div>
 </div>
 
-<!-- ─── HERO ─── -->
+<!-- ─── HERO / MISSION ─── -->
 <section id="hero">
-  <div>
-    <h1 class="hero-h1">
-      <span class="hero-line"><span class="hero-line-inner">One <span id="vw0">Platform</span>.</span></span>
-      <span class="hero-line"><span class="hero-line-inner">Every <span id="vw1">Workflow</span>.</span></span>
-      <span class="hero-line"><span class="hero-line-inner">Total <span id="vw2">Control</span>.</span></span>
-    </h1>
-  </div>
-  <div class="hero-bottom">
-    <p class="hero-desc">Simplify.AI connects your entire stack into one intelligent operating system that runs your business. No more fragmented tools. No more manual processes.</p>
-    <div class="hero-stats">
-      <div><div class="hero-stat-n">62%</div><div class="hero-stat-l">Time saved</div></div>
-      <div><div class="hero-stat-n">240+</div><div class="hero-stat-l">Workflows automated</div></div>
-    </div>
-    <div class="hero-ctas">
-      <button class="btn primary" onclick="openCalendly()">Book Demo →</button>
-      <a href="#plates" class="btn ghost">See Platform</a>
-    </div>
-  </div>
+  <h1 class="mission-h1">
+    <span class="mission-static">The goal was never to give you more software. The goal is to give you</span>
+    <span class="mission-phrase-outer">
+      <span class="mission-phrase" id="heroPhrase">your time back.</span>
+    </span>
+  </h1>
+  <div class="mission-eyebrow">Simplify.AI — Core Mission</div>
 </section>
 
 <!-- ─── MARQUEE ─── -->
@@ -1758,6 +1730,38 @@ window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('pageIntro').classList.add('gone'), 1400);
 });
 
+// ── HERO PHRASE CYCLE ──
+(function() {
+  const phrases = ['your time back.', 'your freedom back.', 'your life back.'];
+  const el = document.getElementById('heroPhrase');
+  if (!el) return;
+  let idx = 0;
+  // Set initial styles
+  el.style.transition = 'transform 0.55s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease';
+
+  function cyclePhrase() {
+    // Exit: slide up + fade out
+    el.style.transform = 'translateY(-28px)';
+    el.style.opacity = '0';
+
+    setTimeout(() => {
+      idx = (idx + 1) % phrases.length;
+      el.textContent = phrases[idx];
+      // Enter from below: reset without transition
+      el.style.transition = 'none';
+      el.style.transform = 'translateY(28px)';
+      el.style.opacity = '0';
+      // Force reflow then animate in
+      void el.offsetHeight;
+      el.style.transition = 'transform 0.55s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease';
+      el.style.transform = 'translateY(0)';
+      el.style.opacity = '1';
+    }, 420);
+  }
+
+  setInterval(cyclePhrase, 2600);
+})();
+
 // ── TOAST ──
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -2132,8 +2136,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ── HERO VAPOR EFFECT ──
-;(function heroVapor() {
+// ── HERO VAPOR EFFECT (disabled — hero rebuilt) ──
+;(function heroVapor() { return;
   const WORDS  = ['vw0', 'vw1', 'vw2'];
   const COLORS = [
     [200, 169, 110],  // amber   — Platform

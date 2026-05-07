@@ -501,6 +501,25 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ─── PLATFORM STATEMENT ─── */
+#platform-statement {
+  padding: 120px 40px; border-top: 1px solid var(--border);
+  overflow: hidden; position: relative;
+}
+.platform-stmt-h {
+  font-family: var(--display);
+  font-size: clamp(52px, 7.5vw, 130px);
+  font-weight: 800; line-height: 0.92; letter-spacing: -0.045em;
+}
+.platform-stmt-line { display: block; overflow: hidden; }
+.platform-stmt-line-inner { display: block; transform: translateY(110%); animation: psLineIn 1s cubic-bezier(0.22,1,0.36,1) forwards; }
+.platform-stmt-line:nth-child(1) .platform-stmt-line-inner { animation-delay: 0.1s; color: var(--fg); }
+.platform-stmt-line:nth-child(2) .platform-stmt-line-inner { animation-delay: 0.25s; color: var(--fg); }
+.platform-stmt-line:nth-child(3) .platform-stmt-line-inner { animation-delay: 0.4s; color: var(--muted); }
+@keyframes psLineIn { to { transform: translateY(0); } }
+.platform-stmt-h.ps-paused .platform-stmt-line-inner { animation-play-state: paused; }
+.platform-stmt-h.ps-play .platform-stmt-line-inner { animation-play-state: running; }
+
 /* ─── MOBILE ─── */
 @media (max-width: 1100px) {
   .manifesto-body, .wwb-layout, .dt-header { grid-template-columns: 1fr; }
@@ -514,7 +533,8 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 @media (max-width: 768px) {
-  #about-hero, #manifesto, #what-we-build, #pull-quote, #origin, #about-cta, footer { padding-left: 20px; padding-right: 20px; }
+  #about-hero, #platform-statement, #manifesto, #what-we-build, #pull-quote, #origin, #about-cta, footer { padding-left: 20px; padding-right: 20px; }
+  .platform-stmt-h { font-size: clamp(36px, 10vw, 64px); }
   #about-hero { padding-bottom: 60px; }
   #nav { padding: 0 20px; }
   .nav-links { display: none; }
@@ -579,6 +599,15 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
       </div>
     </div>
   </div>
+</section>
+
+<!-- ─── PLATFORM STATEMENT ─── -->
+<section id="platform-statement">
+  <h2 class="platform-stmt-h ps-paused" id="platformStmt">
+    <span class="platform-stmt-line"><span class="platform-stmt-line-inner">One Platform.</span></span>
+    <span class="platform-stmt-line"><span class="platform-stmt-line-inner">Every Workflow.</span></span>
+    <span class="platform-stmt-line"><span class="platform-stmt-line-inner">Total Control.</span></span>
+  </h2>
 </section>
 
 <!-- ─── MANIFESTO ─── -->
@@ -849,6 +878,17 @@ const revealIO = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+
+// ── PLATFORM STATEMENT SCROLL TRIGGER ──
+const psEl = document.getElementById('platformStmt');
+if (psEl) {
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      psEl.classList.remove('ps-paused');
+      psEl.classList.add('ps-play');
+    }
+  }, { threshold: 0.25 }).observe(psEl);
+}
 
 // ── NEURAL NETWORK CANVAS (amber — hero) ──
 ;(function neuralAmber() {
