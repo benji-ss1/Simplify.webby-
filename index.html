@@ -156,6 +156,19 @@ img { display: block; max-width: 100%; }
 }
 @keyframes slideUp { to { transform: translateY(0); } }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* ─── HERO BODY / CTAs ─── */
+.hero-body {
+  font-size: 16px; line-height: 1.72; color: var(--muted);
+  max-width: 560px; margin: 0 auto; margin-top: 36px;
+  opacity: 0; animation: fadeUp 0.8s 1.4s ease-out forwards;
+}
+.hero-ctas {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-top: 36px;
+  opacity: 0; animation: fadeUp 0.8s 1.6s ease-out forwards;
+}
+
 .btn {
   padding: 13px 26px; border-radius: 5px; font-size: 14px; font-weight: 600;
   cursor: pointer; border: 1px solid; transition: all 0.2s;
@@ -1181,63 +1194,72 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 <!-- ─── HERO / MISSION ─── -->
 <section id="hero">
   <h1 class="mission-h1">
-    <span class="mission-static">The goal was never to give you more software. The goal is to give you</span>
+    <span class="mission-static">The Goal Was Never To Give You More Software.</span>
+    <span class="mission-static">The Goal Was To Give Your Team</span>
     <span class="mission-phrase-outer">
-      <span class="mission-phrase" id="heroPhrase">your time back.</span>
+      <span class="mission-phrase" id="heroPhrase">Operational Clarity.</span>
     </span>
   </h1>
-  <div class="mission-eyebrow">Simplify.AI — Core Mission</div>
+  <div class="mission-eyebrow">Simplify.AI — Operational Infrastructure</div>
+  <p class="hero-body">In deal-based businesses, operational fragmentation compounds fast. When your team spends more time chasing updates than driving growth — the issue isn't effort. It's operational infrastructure.</p>
+  <div class="hero-ctas">
+    <button class="btn primary" onclick="openCalendly()">Book A Demo →</button>
+    <button class="btn ghost" onclick="showToast('Walkthrough launching soon — book a demo to see it live')">Watch Walkthrough</button>
+  </div>
 </section>
 
 <!-- ─── MARQUEE ─── -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <div class="marquee-item"><span class="m-dot"></span>AI Operating System</div>
-    <div class="marquee-item"><span class="m-dot"></span>Workflow Automation</div>
-    <div class="marquee-item"><span class="m-dot"></span>Context Engine</div>
-    <div class="marquee-item"><span class="m-dot"></span>CRM Integration</div>
-    <div class="marquee-item"><span class="m-dot"></span>Business Intelligence</div>
-    <div class="marquee-item"><span class="m-dot"></span>Revenue Operations</div>
-    <div class="marquee-item"><span class="m-dot"></span>AI Agents</div>
-    <div class="marquee-item"><span class="m-dot"></span>Total Business Control</div>
-    <div class="marquee-item"><span class="m-dot"></span>AI Operating System</div>
-    <div class="marquee-item"><span class="m-dot"></span>Workflow Automation</div>
-    <div class="marquee-item"><span class="m-dot"></span>Context Engine</div>
-    <div class="marquee-item"><span class="m-dot"></span>CRM Integration</div>
-    <div class="marquee-item"><span class="m-dot"></span>Business Intelligence</div>
-    <div class="marquee-item"><span class="m-dot"></span>Revenue Operations</div>
-    <div class="marquee-item"><span class="m-dot"></span>AI Agents</div>
-    <div class="marquee-item"><span class="m-dot"></span>Total Business Control</div>
+    <div class="marquee-item"><span class="m-dot"></span>Operational Clarity</div>
+    <div class="marquee-item"><span class="m-dot"></span>Centralised Workflows</div>
+    <div class="marquee-item"><span class="m-dot"></span>Pipeline Oversight</div>
+    <div class="marquee-item"><span class="m-dot"></span>Business Visibility</div>
+    <div class="marquee-item"><span class="m-dot"></span>Operational Infrastructure</div>
+    <div class="marquee-item"><span class="m-dot"></span>Team Accountability</div>
+    <div class="marquee-item"><span class="m-dot"></span>Execution Focus</div>
+    <div class="marquee-item"><span class="m-dot"></span>Reduced Fragmentation</div>
+    <div class="marquee-item"><span class="m-dot"></span>Operational Clarity</div>
+    <div class="marquee-item"><span class="m-dot"></span>Centralised Workflows</div>
+    <div class="marquee-item"><span class="m-dot"></span>Pipeline Oversight</div>
+    <div class="marquee-item"><span class="m-dot"></span>Business Visibility</div>
+    <div class="marquee-item"><span class="m-dot"></span>Operational Infrastructure</div>
+    <div class="marquee-item"><span class="m-dot"></span>Team Accountability</div>
+    <div class="marquee-item"><span class="m-dot"></span>Execution Focus</div>
+    <div class="marquee-item"><span class="m-dot"></span>Reduced Fragmentation</div>
   </div>
 </div>
 
 <!-- ─── 01 PLATES ─── -->
 <section class="section bg2" id="plates">
-  <div class="s-label reveal">01  Platform Visualised</div>
+  <div class="s-label reveal">01  Operational Fragmentation</div>
   <div class="plates-intro">
-    <h2 class="s-h reveal">Three Problems.<br>One <em>System.</em></h2>
-    <p class="plates-intro-right reveal reveal-d2">Simplify.AI replaces fragmented tools with a single intelligent operating layer — one that observes, connects, and acts across your entire business in real time.</p>
+    <h2 class="s-h reveal">Growth Creates<br><em>Complexity.</em></h2>
+    <p class="plates-intro-right reveal reveal-d2">Most recruitment firms, agencies, sales teams, and service businesses don't slow down because demand disappears. They slow down because operations become harder to manage as growth increases. Simplify.AI was built to centralise the operational side of growing businesses before fragmentation becomes the bottleneck.</p>
   </div>
   <div class="plates-grid">
     <div class="plate-card reveal reveal-d1">
       <div class="plate-img-bg pa"></div>
       <div class="plate-mask"></div>
       <div class="plate-info">
-        <div class="plate-title">Simplify.AI resolves fragmented business operations.</div>
+        <div class="plate-id">Operational Drag</div>
+        <div class="plate-title">Communication gets buried. Reporting becomes reactive. Visibility weakens.</div>
       </div>
     </div>
     <div class="plate-card reveal reveal-d2">
       <div class="plate-img-bg pb"></div>
       <div class="plate-mask"></div>
       <div class="plate-info">
-        <div class="plate-title">Our OS connects your tools and runs your operations.</div>
+        <div class="plate-id">Founder Bottleneck</div>
+        <div class="plate-title">Team oversight becomes inconsistent. Founders become the operational glue.</div>
       </div>
     </div>
     <div class="plate-card reveal reveal-d3">
       <div class="plate-img-bg p1"></div>
       <div class="plate-mask"></div>
       <div class="plate-info">
-        <div class="plate-title">Deploying AI agents for total business control.</div>
+        <div class="plate-id">The Solution</div>
+        <div class="plate-title">One centralised operational environment for growing deal-based businesses.</div>
       </div>
     </div>
   </div>
@@ -1252,15 +1274,15 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
       <div class="problem-img-mask"></div>
     </div>
     <div class="problem-text">
-      <h2 class="s-h reveal">Your Stack Is<br>Fighting <em>Itself.</em></h2>
-      <p class="problem-desc reveal reveal-d1">Every disconnected tool is a hole in your operation. Leads fall through. Context gets lost. Teams repeat work. It is not a people problem — it is an infrastructure problem.</p>
+      <h2 class="s-h reveal">Most Businesses Are<br>Operating Across<br><em>Disconnected Systems.</em></h2>
+      <p class="problem-desc reveal reveal-d1">One platform for communication. Another for CRM. Another for reporting. Another for onboarding. Another for workflow management. The result is operational drag — and most operators don't realise how much time it's costing them.</p>
       <ul class="chaos-items reveal reveal-d2">
-        <li><span class="chaos-x">×</span>Fragmented CRM with incomplete data</li>
-        <li><span class="chaos-x">×</span>Unconnected Slack channels and lost context</li>
-        <li><span class="chaos-x">×</span>Lead bottlenecks from manual handoffs</li>
-        <li><span class="chaos-x">×</span>Hidden sheets no one maintains</li>
-        <li><span class="chaos-x">×</span>Reporting that is always out of date</li>
-        <li><span class="chaos-x">×</span>Teams doing work a system should handle</li>
+        <li><span class="chaos-x">→</span>Navigating disconnected systems daily</li>
+        <li><span class="chaos-x">→</span>Chasing visibility across fragmented tools</li>
+        <li><span class="chaos-x">→</span>Manually checking updates that should be automatic</li>
+        <li><span class="chaos-x">→</span>Overseeing workflows with no centralised view</li>
+        <li><span class="chaos-x">→</span>Reporting that's reactive instead of real-time</li>
+        <li><span class="chaos-x">→</span>Founders acting as the operational glue manually</li>
       </ul>
     </div>
   </div>
@@ -1271,24 +1293,24 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   <div class="s-label reveal">03  The Solution</div>
   <div class="os-layout">
     <div class="os-text">
-      <h2 class="s-h reveal">Your Business OS.<br><em>Finally.</em></h2>
-      <p class="os-desc reveal reveal-d1">Simplify.AI is the intelligence layer across your entire stack, pulling context from every tool, automating the operations layer, and giving your team clarity at every stage.</p>
+      <h2 class="s-h reveal">Your Business OS.<br><em>Simplified.</em></h2>
+      <p class="os-desc reveal reveal-d1">Simplify.AI gives founders and operators a real-time operational overview of the business in one place — making everything easier to monitor, manage, and scale without adding operational complexity.</p>
       <div class="reveal reveal-d2">
         <div class="os-pt">
           <div class="os-pt-n">01</div>
-          <div><div class="os-pt-title">Consolidated Lead Management</div><div class="os-pt-desc">Every lead, touchpoint, and conversation synced and visible in one place. No manual updates.</div></div>
+          <div><div class="os-pt-title">Sales Pipeline Oversight</div><div class="os-pt-desc">Every deal, stage, and client touchpoint visible in one clear pipeline view. No chasing updates.</div></div>
         </div>
         <div class="os-pt">
           <div class="os-pt-n">02</div>
-          <div><div class="os-pt-title">Single Source Slack Hub</div><div class="os-pt-desc">Pipe alerts, deal updates, and task notifications into a structured Slack layer your team actually uses.</div></div>
+          <div><div class="os-pt-title">Client & Workflow Management</div><div class="os-pt-desc">Centralised client flow, onboarding, and workflow visibility — all managed from one operational layer.</div></div>
         </div>
         <div class="os-pt">
           <div class="os-pt-n">03</div>
-          <div><div class="os-pt-title">Automated Operations Layer</div><div class="os-pt-desc">Every workflow your team handles manually done automatically. CRM updates, follow ups, recaps.</div></div>
+          <div><div class="os-pt-title">Live Reporting & Dashboards</div><div class="os-pt-desc">Actionable reporting that updates in real time as your business moves. No manual refresh. No lag.</div></div>
         </div>
         <div class="os-pt">
           <div class="os-pt-n">04</div>
-          <div><div class="os-pt-title">Live Business Intelligence</div><div class="os-pt-desc">Real time reporting that updates as deals move, calls end, and tasks complete. No manual refresh.</div></div>
+          <div><div class="os-pt-title">Team Accountability & Oversight</div><div class="os-pt-desc">Complete visibility across team communication, task completion, and operational performance.</div></div>
         </div>
       </div>
     </div>
@@ -1307,27 +1329,27 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 
 <!-- ─── 04 AGENTS ─── -->
 <section class="section bg2" id="agents">
-  <div class="s-label reveal">04  AI Agents</div>
+  <div class="s-label reveal">04  Operational Visibility</div>
   <div class="agents-layout">
     <div class="agents-text">
-      <h2 class="s-h reveal">Total Business<br><em>Control.</em></h2>
-      <p class="agents-desc reveal reveal-d1">Simplify.AI deploys intelligent agents trained on your context, your processes, and your data. They do not just respond. They act.</p>
+      <h2 class="s-h reveal">Operational Visibility<br>Changes How<br><em>Businesses Scale.</em></h2>
+      <p class="agents-desc reveal reveal-d1">When operational visibility weakens, businesses become reactive. Managers chase updates. Founders get buried internally. Team accountability weakens. Execution slows down.</p>
       <div class="agent-rows reveal reveal-d2">
         <div class="agent-row">
           <div class="agent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-          <div><div class="agent-title">Trigger Based Execution</div><div class="agent-desc">Agents activate on real business events — a call ending, a deal stage changing, a form submitting.</div></div>
+          <div><div class="agent-title">Clearer Oversight</div><div class="agent-desc">Founders and managers regain a complete view of operations without manually chasing every update.</div></div>
         </div>
         <div class="agent-row">
           <div class="agent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <div><div class="agent-title">Context Aware Decisions</div><div class="agent-desc">Every action grounded in your business context — call history, deal stage, team notes, CRM data.</div></div>
+          <div><div class="agent-title">Cleaner Reporting</div><div class="agent-desc">Reporting becomes actionable in real time — updated automatically as your business moves forward.</div></div>
         </div>
         <div class="agent-row">
           <div class="agent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <div><div class="agent-title">Self Improving Loops</div><div class="agent-desc">Agents score their own performance, identify failure patterns, and adapt continuously.</div></div>
+          <div><div class="agent-title">Operational Accountability</div><div class="agent-desc">Teams operate with stronger accountability when workflows, outputs, and status are centrally visible.</div></div>
         </div>
         <div class="agent-row">
           <div class="agent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <div><div class="agent-title">Full Audit Trail</div><div class="agent-desc">Every agent action is logged, timestamped, and reviewable. Complete visibility with zero black boxes.</div></div>
+          <div><div class="agent-title">Centralised Execution</div><div class="agent-desc">Execution across teams becomes coordinated from one operational environment — not fragmented across platforms.</div></div>
         </div>
       </div>
     </div>
@@ -1340,13 +1362,13 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 
 <!-- ─── 05 HOW IT WORKS ─── -->
 <section class="section" id="how">
-  <div class="s-label reveal">05  How It Works</div>
-  <h2 class="s-h reveal">The Flywheel<br><em>Never Stops.</em></h2>
+  <div class="s-label reveal">05  Clear Operations</div>
+  <h2 class="s-h reveal">Clear Operations<br><em>Create Momentum.</em></h2>
   <div class="how-grid reveal reveal-d1">
-    <div class="how-step"><div class="how-tag">OBSERVE</div><div class="how-n">01</div><div class="how-title">Capture Every Signal</div><div class="how-desc">Every call, deal update, task completion, and communication is captured automatically across your entire stack.</div></div>
-    <div class="how-step"><div class="how-tag">IDENTIFY</div><div class="how-n">02</div><div class="how-title">Find the Friction</div><div class="how-desc">Simplify.AI maps bottlenecks by stage, team, and behavior. You see exactly where the operation leaks.</div></div>
-    <div class="how-step"><div class="how-tag">ACT</div><div class="how-n">03</div><div class="how-title">Deploy Automations</div><div class="how-desc">Targeted workflows and agents are deployed directly into the gaps — updating CRMs, sending recaps, moving deals.</div></div>
-    <div class="how-step"><div class="how-tag">IMPROVE</div><div class="how-n">04</div><div class="how-title">Compound Gains</div><div class="how-desc">Each cycle your operating system gets smarter. Performance compounds. The flywheel never stops turning.</div></div>
+    <div class="how-step"><div class="how-tag">CLARITY</div><div class="how-n">01</div><div class="how-title">Communication Becomes Clearer</div><div class="how-desc">Teams operate with a shared view of what's happening — no more chasing updates or repeating conversations across disconnected channels.</div></div>
+    <div class="how-step"><div class="how-tag">SPEED</div><div class="how-n">02</div><div class="how-title">Teams Move Faster</div><div class="how-desc">When operational friction decreases, execution accelerates. Teams spend time on output, not overhead. Decisions happen faster.</div></div>
+    <div class="how-step"><div class="how-tag">OVERSIGHT</div><div class="how-n">03</div><div class="how-title">Workflows Become Easier to Oversee</div><div class="how-desc">Every workflow, task, and process becomes visible and manageable from one centralised operational environment.</div></div>
+    <div class="how-step"><div class="how-tag">COMPOUNDS</div><div class="how-n">04</div><div class="how-title">Reporting Becomes Actionable</div><div class="how-desc">Founders regain operational visibility. Reporting updates in real time. Operational clarity compounds over time — the business scales cleaner.</div></div>
   </div>
 </section>
 
@@ -1354,8 +1376,8 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 <section class="section bg2" id="showcase">
   <div class="s-label reveal">06  The Platform</div>
   <div class="showcase-header">
-    <h2 class="s-h reveal">See It<br><em>In Action.</em></h2>
-    <p class="showcase-sub reveal reveal-d2">A purpose built operating system for teams that run on data. Real dashboards, real workflows, real results — deployed inside your business in days not months.</p>
+    <h2 class="s-h reveal">Built Around<br>High-Performance<br><em>Teams.</em></h2>
+    <p class="showcase-sub reveal reveal-d2">Every Simplify.AI environment is tailored around the operational structure of the business using it — whether that means recruitment pipelines, sales teams, lead management, onboarding systems, or operational oversight. The objective stays the same: a business that becomes easier to operate as it grows.</p>
   </div>
   <!-- FocusRail -->
   <div class="focus-rail reveal" id="focusRail" tabindex="0">
@@ -1390,10 +1412,10 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 
 <!-- ─── 07 ENGAGEMENT MODEL ─── -->
 <section class="section bg2" id="model">
-  <div class="s-label reveal">07  Our Model</div>
+  <div class="s-label reveal">07  Our Engagement</div>
   <div class="model-head">
-    <h2 class="s-h reveal">How We<br><em>Engage.</em></h2>
-    <p class="model-sub reveal reveal-d1">No retainers, no guesswork. A clear phased engagement that takes your business from fragmented to fully automated — on a timeline that actually delivers results.</p>
+    <h2 class="s-h reveal">Operational<br>Infrastructure For<br><em>Growing Businesses.</em></h2>
+    <p class="model-sub reveal reveal-d1">We work with a limited number of businesses at a time to design and implement operational systems around the way they already operate. No bloated templates. No unnecessary software. No operational guesswork — just clear infrastructure designed to reduce friction and create visibility across the business.</p>
   </div>
 
   <!-- Interactive capability table -->
@@ -1417,40 +1439,40 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   <div class="model-phases reveal reveal-d1">
     <div class="m-phase">
       <div class="m-phase-label">Phase 01</div>
-      <div class="m-phase-title">Discover</div>
-      <div class="m-phase-time">2 WEEKS</div>
+      <div class="m-phase-title">Audit</div>
+      <div class="m-phase-time">OPERATIONAL AUDIT</div>
       <ul class="m-phase-items">
-        <li>Full stack audit</li>
-        <li>Process mapping</li>
-        <li>Integration assessment</li>
-        <li>Opportunity identification</li>
+        <li>Operational audit</li>
+        <li>Workflow mapping</li>
+        <li>Infrastructure planning</li>
+        <li>Friction identification</li>
       </ul>
-      <button class="m-phase-cta" onclick="openCalendly()">Schedule Discovery Call</button>
+      <button class="m-phase-cta" onclick="openCalendly()">Schedule Audit Call</button>
     </div>
     <div class="m-phase featured">
       <div class="m-phase-label">Phase 02</div>
-      <div class="m-phase-title">Deploy</div>
-      <div class="m-phase-time">4 TO 6 WEEKS</div>
+      <div class="m-phase-title">Build</div>
+      <div class="m-phase-time">INFRASTRUCTURE BUILD</div>
       <ul class="m-phase-items">
-        <li>All integrations live</li>
-        <li>Workflows automated</li>
-        <li>Agents trained and deployed</li>
+        <li>Dashboard implementation</li>
+        <li>System centralisation</li>
+        <li>Reporting visibility live</li>
         <li>Team onboarded</li>
-        <li>Dashboard configured</li>
+        <li>Workflows operational</li>
       </ul>
-      <button class="m-phase-cta" onclick="openPhaseModal('Phase 02 · Deploy','Start Your Deployment')">Start Deployment</button>
+      <button class="m-phase-cta" onclick="openPhaseModal('Phase 02 · Build','Start Your Infrastructure Build')">Start Infrastructure Build</button>
     </div>
     <div class="m-phase">
       <div class="m-phase-label">Phase 03</div>
-      <div class="m-phase-title">Scale</div>
+      <div class="m-phase-title">Optimise</div>
       <div class="m-phase-time">ONGOING</div>
       <ul class="m-phase-items">
-        <li>Monthly optimisation sprints</li>
+        <li>Operational optimisation</li>
         <li>New workflow additions</li>
-        <li>Business reviews</li>
-        <li>Dedicated CSM</li>
+        <li>Performance monitoring</li>
+        <li>Dedicated operational support</li>
       </ul>
-      <button class="m-phase-cta" onclick="openPhaseModal('Phase 03 · Scale','Join the Scale Programme')">Join Scale Programme</button>
+      <button class="m-phase-cta" onclick="openPhaseModal('Phase 03 · Optimise','Join the Optimisation Programme')">Join Optimise Programme</button>
     </div>
   </div>
 </section>
@@ -1459,9 +1481,9 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 <section class="section" id="integrations">
   <div class="s-label reveal">09  Integrations</div>
   <div class="integ-head">
-    <h2 class="s-h reveal">Connects To<br><em>Your Stack.</em></h2>
+    <h2 class="s-h reveal">One Operational<br>Layer Across<br><em>Your Entire Business.</em></h2>
     <div class="reveal reveal-d2">
-      <p class="integ-sub">Works with the tools you already use. No migration, no switching. Connect in under 10 minutes and start seeing results immediately.</p>
+      <p class="integ-sub">Simplify.AI is designed to sit above the tools your business already uses and centralise operational visibility across them — from CRMs and reporting systems to onboarding workflows, communication platforms, and internal tracking. No migration. No switching.</p>
       <div class="integ-pills">
         <span class="integ-pill">SOC 2 Type II</span>
         <span class="integ-pill">End to end encrypted</span>
@@ -1597,11 +1619,11 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 <!-- ─── CTA ─── -->
 <section class="section" id="cta">
   <div class="cta-inner">
-    <div class="cta-eye reveal">Ready When You Are</div>
-    <h2 class="cta-h reveal reveal-d1">Stop Running Tools.<br><em>Run Your Business.</em></h2>
-    <p class="cta-sub reveal reveal-d2">Join the operators using Simplify.AI to consolidate their stack, automate their operations, and reclaim their time.</p>
+    <div class="cta-eye reveal">Operational Infrastructure</div>
+    <h2 class="cta-h reveal reveal-d1">Stop Managing<br>Fragmented<br><em>Operations Manually.</em></h2>
+    <p class="cta-sub reveal reveal-d2">Simplify.AI is built for growing businesses that have outgrown scattered systems, reactive management, and fragmented workflows. If your business feels harder to oversee than it should — the issue usually isn't effort. It's operational infrastructure.</p>
     <div class="cta-btns reveal reveal-d3">
-      <button class="btn primary" onclick="openCalendly()">Book a Demo →</button>
+      <button class="btn primary" onclick="openCalendly()">Book A Demo →</button>
       <button class="btn ghost" onclick="document.getElementById('contact-form-section').scrollIntoView({behavior:'smooth'})">Send a Message</button>
     </div>
   </div>
@@ -1612,7 +1634,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   <div class="footer-grid">
     <div>
       <div class="footer-brand-name"><img src="Images/logo.png" alt="Simplify.AI">Simplify.AI</div>
-      <p class="footer-tagline">The AI operating system for modern business. Connect your stack, automate your operations, scale with clarity.</p>
+      <p class="footer-tagline">Removed Chaos. Introduced Clarity. So Your Team Can Focus On Growth Instead Of Operational Noise.</p>
     </div>
     <div class="footer-col">
       <div class="footer-col-h">Platform</div>
@@ -1655,9 +1677,9 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
     <div class="push-notif-brand">Simplify.AI</div>
     <div class="push-notif-badge">New</div>
   </div>
-  <div class="push-notif-title">Want to book a demo?</div>
-  <div class="push-notif-body">Let's build your Business OS — the intelligence layer that automates, connects, and scales your entire operation.</div>
-  <button class="push-notif-cta" onclick="dismissPushNotif(); openCalendly();">Book a Demo →</button>
+  <div class="push-notif-title">Ready for operational clarity?</div>
+  <div class="push-notif-body">Simplify.AI centralises your client flow, reporting, workflows, and team visibility into one clear operational environment.</div>
+  <button class="push-notif-cta" onclick="dismissPushNotif(); openCalendly();">Book A Demo →</button>
 </div>
 
 <!-- ─── PHASE ACTION MODAL ─── -->
@@ -1741,7 +1763,7 @@ window.addEventListener('load', () => {
 
 // ── HERO PHRASE CYCLE ──
 (function() {
-  const phrases = ['your time back.', 'your freedom back.', 'your life back.'];
+  const phrases = ['Operational Clarity.', 'Execution Visibility.', 'Scalable Control.', 'Business Infrastructure.'];
   const el = document.getElementById('heroPhrase');
   if (!el) return;
   let idx = 0;
@@ -1826,10 +1848,10 @@ const osTimer = setInterval(() => goOsSlide((osIdx + 1) % osSlides.length), 4200
 
 // ── FOCUS RAIL ──
 const frData = [
-  { img:'dash1.png',   title:'Agent Workflow Architecture', meta:'Operations · AI',      desc:'Automated workflows triggered by real business events across your entire stack.' },
-  { img:'dash2.png',   title:'Client Dashboard',            meta:'Analytics · Reports',  desc:'Real-time visibility into every client account, pipeline stage, and team action.' },
-  { img:'michaelweb.jpg', title:'Website & Platform Tracking', meta:'Sites · Analytics',    desc:'View your sites, track performance and manage clients — all within one centralised dashboard.' },
-  { img:'gemini1.png', title:'Email Hub Integration',       meta:'Gmail · Automation',   desc:'AI reads, categorises and responds to email threads with full business context.' },
+  { img:'dash1.png',   title:'Sales Pipeline Oversight',        meta:'Pipeline · Operations',   desc:'Every deal, stage, and client touchpoint visible in one clear operational view — no chasing updates.' },
+  { img:'dash2.png',   title:'Client Operations Dashboard',     meta:'Clients · Reporting',     desc:'Real-time visibility into every client account, workflow status, and team performance metric.' },
+  { img:'michaelweb.jpg', title:'Workflow Oversight Platform',  meta:'Workflows · Visibility',  desc:'All workflows, tasks, and operational processes centralised and manageable from one environment.' },
+  { img:'gemini1.png', title:'Operational Reporting Hub',       meta:'Reporting · Clarity',     desc:'Actionable reporting that updates in real time — so your business operates on current data, not yesterday\'s.' },
 ];
 let frActive = 0;
 const frCards = document.querySelectorAll('.fr-card');
