@@ -520,7 +520,14 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 .platform-stmt-h.ps-paused .platform-stmt-line-inner { animation-play-state: paused; }
 .platform-stmt-h.ps-play .platform-stmt-line-inner { animation-play-state: running; }
 
-/* ─── MOBILE ─── */
+/* ═══ MOBILE-FIRST OVERHAUL (about) ═══ */
+html { overflow-x: hidden; }
+.about-hero-h1, .platform-stmt-h, .manifesto-lede, .wwb-h, .pull-quote-text, .origin-h, .dt-h, .cta-h {
+  word-break: break-word; overflow-wrap: break-word;
+}
+.dt-pillars > *, .wwb-layout > *, .manifesto-body > *, .footer-grid > *, .chaos-strip-inner > * { min-width: 0; }
+
+/* ── 1100px ── */
 @media (max-width: 1100px) {
   .manifesto-body, .wwb-layout, .dt-header { grid-template-columns: 1fr; }
   .dt-pillars { grid-template-columns: 1fr; }
@@ -532,21 +539,86 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
   .chaos-item:last-child { border-bottom: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
+
+/* ── 768px ── */
 @media (max-width: 768px) {
-  #about-hero, #platform-statement, #manifesto, #what-we-build, #pull-quote, #origin, #about-cta, footer { padding-left: 20px; padding-right: 20px; }
-  .platform-stmt-h { font-size: clamp(36px, 10vw, 64px); }
-  #about-hero { padding-bottom: 60px; }
+  #about-hero, #platform-statement, #manifesto, #what-we-build,
+  #pull-quote, #origin, #about-cta, footer { padding-left: 20px !important; padding-right: 20px !important; }
+  #about-hero { padding-bottom: 60px; padding-top: 100px; }
+  #manifesto { padding-top: 80px; padding-bottom: 80px; }
+  #what-we-build { padding-top: 80px; padding-bottom: 80px; }
+  #pull-quote { padding-top: 100px; padding-bottom: 100px; }
+  #about-cta { padding-top: 100px; padding-bottom: 100px; }
+
+  /* About hero heading */
+  .about-hero-h1 { font-size: clamp(36px, 9vw, 72px) !important; }
+  .about-hero-meta { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .scroll-indicator { margin-left: 0; }
+
+  /* Platform statement */
+  .platform-stmt-h { font-size: clamp(28px, 8vw, 52px) !important; }
+
+  /* Manifesto */
+  .manifesto-lede { font-size: clamp(22px, 5.5vw, 38px) !important; }
+  .manifesto-body { grid-template-columns: 1fr !important; gap: 24px; }
+  .manifesto-col p { font-size: 15px; }
+
+  /* Chaos strip */
+  #chaos-strip { padding: 0 20px 60px; }
+  .chaos-strip-inner { grid-template-columns: 1fr !important; }
+  .chaos-item { border-right: none; border-bottom: 1px solid var(--border); }
+
+  /* What we build */
+  .wwb-layout { grid-template-columns: 1fr !important; }
+  .wwb-h { font-size: clamp(28px, 7.5vw, 52px) !important; }
+  .wwb-desc { font-size: 14px; }
+  .wwb-visual { aspect-ratio: 16/9; }
+
+  /* Pull quote */
+  .pull-quote-text { font-size: clamp(24px, 7vw, 48px) !important; }
+
+  /* Origin */
+  .origin-content { padding: 60px 20px; }
+  .origin-h { font-size: clamp(28px, 7.5vw, 52px) !important; }
+  .origin-body { font-size: 14px; }
+  .origin-values { flex-wrap: wrap; gap: 20px; }
+
+  /* Nav */
   #nav { padding: 0 20px; }
   .nav-links { display: none; }
   .n-btn:not(.solid) { display: none; }
   .nav-hamburger { display: block; }
+
+  /* Digital transform */
   .dt-content { padding: 80px 20px; }
-  .dt-header { grid-template-columns: 1fr; }
-  .dt-bottom { flex-direction: column; align-items: flex-start; }
+  .dt-header { grid-template-columns: 1fr !important; }
+  .dt-h { font-size: clamp(36px, 9vw, 72px) !important; }
+  .dt-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
   .dt-cta-wrap { align-items: flex-start; }
-  .origin-content { padding: 60px 20px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; gap: 8px; }
+  .dt-pillars { grid-template-columns: 1fr !important; }
+  .dt-pillar { border-right: none; border-bottom: 1px solid rgba(139,92,246,0.12); }
+  .dt-pillar:last-child { border-bottom: none; }
+
+  /* About CTA */
+  .cta-h { font-size: clamp(28px, 8vw, 60px) !important; }
+  .cta-sub { font-size: 15px; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .cta-btns .btn { width: 100%; max-width: 300px; justify-content: center; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 32px; }
+  .footer-bottom { flex-direction: column !important; gap: 8px; }
+  .footer-tagline { font-size: 12px; }
+}
+
+/* ── 480px ── */
+@media (max-width: 480px) {
+  .about-hero-h1 { font-size: clamp(28px, 8vw, 48px) !important; }
+  .platform-stmt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
+  .wwb-h, .origin-h, .dt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
+  .pull-quote-text { font-size: clamp(20px, 7vw, 36px) !important; }
+  .manifesto-lede { font-size: clamp(20px, 6vw, 32px) !important; }
+  .cta-h { font-size: clamp(22px, 7.5vw, 40px) !important; }
 }
 </style>
 </head>
