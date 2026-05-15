@@ -1356,6 +1356,18 @@ html { overflow-x: hidden; }
   transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
 }
 .mob-circle-menu.open .mob-circle-menu-login { opacity: 1; transform: none; transition-delay: 0.42s; }
+.mob-menu-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 40px; height: 40px; border-radius: 8px;
+  background: rgba(240,237,232,0.06); border: 1px solid var(--border2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--fg); padding: 0;
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1), background 0.2s;
+  transition-delay: 0.1s;
+}
+.mob-circle-menu.open .mob-menu-close { opacity: 1; transform: scale(1); transition-delay: 0.12s; }
+.mob-menu-close:hover { background: rgba(240,237,232,0.12); }
 
 /* ─── MOBILE FOCUS RAIL ─── */
 @media (max-width: 768px) {
@@ -1411,6 +1423,11 @@ html { overflow-x: hidden; }
   <div class="mob-circle-menu-login">
     <button class="n-btn" onclick="closeMobCircleMenu(); openLoginModal()" style="font-size:15px;padding:12px 32px;">Log In</button>
   </div>
+  <button class="mob-menu-close" onclick="closeMobCircleMenu()" aria-label="Close menu">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none">
+      <path d="M18 6L6 18"/><path d="M6 6L18 18"/>
+    </svg>
+  </button>
 </div>
 
 <!-- ─── HERO / MISSION ─── -->
