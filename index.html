@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <link rel="icon" type="image/png" href="Images/logo.png">
+<link rel="apple-touch-icon" href="Images/logo.png">
 <style>
 /* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -959,11 +960,12 @@ html { overflow-x: hidden; }
   #partners { padding: 60px 20px !important; }
 
   /* ─ Nav ─ */
-  #nav { padding: 0 20px; }
+  #nav { padding: 0 16px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
   .nav-links { display: none; }
   .nav-right { display: none; }
   .nav-hamburger { display: none; }
-  .mob-menu-trigger { display: flex; }
+  .mob-book-demo { display: inline-flex; align-self: center; }
+  .mob-menu-trigger { display: flex; justify-self: end; }
 
   /* ─ Hero headline: safe clamp so even long phrases wrap ─ */
   .mission-h1 { font-size: clamp(28px, 8vw, 52px) !important; line-height: 1.05; }
@@ -1292,26 +1294,39 @@ html { overflow-x: hidden; }
   text-transform: uppercase; color: var(--amber);
 }
 
-/* ─── MOBILE NAV MENU ─── */
+/* ─── MOBILE NAV ─── */
+.mob-book-demo {
+  display: none; /* desktop hidden */
+  font-size: 11px; font-weight: 700; padding: 7px 11px;
+  white-space: nowrap; flex-shrink: 0;
+}
 .mob-menu-trigger {
-  display: none; width: 38px; height: 38px; border-radius: 50%;
-  background: rgba(240,237,232,0.08); border: 1px solid var(--border2);
+  display: none; width: 40px; height: 40px; border-radius: 8px;
+  background: rgba(240,237,232,0.06); border: 1px solid var(--border2);
   cursor: pointer; align-items: center; justify-content: center;
-  flex-shrink: 0; padding: 0;
+  flex-shrink: 0; padding: 0; color: var(--fg);
   transition: background 0.2s;
 }
-.mob-menu-trigger:hover { background: rgba(240,237,232,0.16); }
-.mob-trigger-lines { display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
-.mob-trigger-lines span {
-  display: block; width: 16px; height: 1.5px;
-  background: var(--fg); border-radius: 2px;
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s;
-  transform-origin: center;
-}
-.mob-menu-trigger.open .mob-trigger-lines span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-.mob-menu-trigger.open .mob-trigger-lines span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.mob-menu-trigger.open .mob-trigger-lines span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+.mob-menu-trigger:hover { background: rgba(240,237,232,0.12); }
 
+/* SVG hamburger → X animation (adapted from shadcn prompt) */
+.mob-svg-l1, .mob-svg-l2, .mob-svg-l3 { transform-origin: center; }
+.mob-svg-l1 {
+  transform: translateY(-7px);
+  transition: transform 300ms cubic-bezier(.5,.85,.25,1.1);
+}
+.mob-svg-l2 {
+  transition: transform 300ms cubic-bezier(.5,.85,.25,1.8);
+}
+.mob-svg-l3 {
+  transform: translateY(7px);
+  transition: transform 300ms cubic-bezier(.5,.85,.25,1.1);
+}
+.mob-menu-trigger.open .mob-svg-l1 { transform: translateY(0) rotate(315deg); }
+.mob-menu-trigger.open .mob-svg-l2 { transform: rotate(45deg); }
+.mob-menu-trigger.open .mob-svg-l3 { transform: translateY(0) rotate(135deg); }
+
+/* Full-screen slide-down menu */
 .mob-circle-menu {
   position: fixed; top: 0; left: 0; right: 0; height: 100dvh;
   z-index: 210; background: #0d0d0d;
@@ -1321,19 +1336,14 @@ html { overflow-x: hidden; }
   transform: translateY(-100%);
   transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
 }
-.mob-circle-menu.open {
-  transform: translateY(0);
-  pointer-events: all;
-}
+.mob-circle-menu.open { transform: translateY(0); pointer-events: all; }
 .mob-circle-link {
   font-family: var(--display);
   font-size: clamp(42px, 12vw, 72px);
   font-weight: 800; letter-spacing: -0.04em;
   color: var(--fg); text-decoration: none; line-height: 1.15;
   opacity: 0; transform: translateY(20px);
-  transition: color 0.2s,
-    opacity 0.4s cubic-bezier(0.22,1,0.36,1),
-    transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  transition: color 0.2s, opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
   display: block;
 }
 .mob-circle-menu.open .mob-circle-link:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.18s; }
@@ -1341,8 +1351,7 @@ html { overflow-x: hidden; }
 .mob-circle-menu.open .mob-circle-link:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.34s; }
 .mob-circle-link:active, .mob-circle-link:hover { color: var(--amber); }
 .mob-circle-menu-login {
-  margin-top: 44px;
-  opacity: 0; transform: translateY(12px);
+  margin-top: 44px; opacity: 0; transform: translateY(12px);
   transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
 }
 .mob-circle-menu.open .mob-circle-menu-login { opacity: 1; transform: none; transition-delay: 0.42s; }
@@ -1371,6 +1380,7 @@ html { overflow-x: hidden; }
 
 <!-- ─── NAV ─── -->
 <nav id="nav">
+  <button class="n-btn solid mob-book-demo" onclick="openCalendly()">Book Demo</button>
   <a href="#" class="nav-logo">
     <img src="Images/logo.png" alt="Simplify.AI">
   </a>
@@ -1384,7 +1394,11 @@ html { overflow-x: hidden; }
     <button class="n-btn solid" onclick="openCalendly()">Book Demo</button>
   </div>
   <button class="mob-menu-trigger" id="mobMenuTrigger" onclick="toggleMobCircleMenu()" aria-label="Menu">
-    <div class="mob-trigger-lines"><span></span><span></span><span></span></div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none">
+      <path class="mob-svg-l1" d="M4 12L20 12"/>
+      <path class="mob-svg-l2" d="M4 12H20"/>
+      <path class="mob-svg-l3" d="M4 12H20"/>
+    </svg>
   </button>
 </nav>
 
@@ -1780,7 +1794,7 @@ html { overflow-x: hidden; }
   <div class="s-label reveal">11  Questions</div>
   <div class="faq-head reveal">
     <div class="faq-badge">FAQ</div>
-    <h2 class="s-h" style="margin-top:16px;">Common Questions<br><em>Answered.</em></h2>
+    <h2 class="s-h" style="margin-top:16px;">Frequently Asked<br><em>Questions.</em></h2>
     <p class="faq-sub reveal reveal-d1">Everything you need to know about how Simplify.AI works and what it can do for your business.</p>
   </div>
   <div class="faq-list">
