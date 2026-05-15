@@ -640,7 +640,7 @@ img { display: block; max-width: 100%; }
 
 .contact-ed-content {
   position: relative; z-index: 2;
-  flex: 1; padding: 80px 60px;
+  flex: 1; padding: 60px 52px;
 }
 .contact-ed-eyebrow {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
@@ -651,9 +651,9 @@ img { display: block; max-width: 100%; }
 
 .contact-ed-title {
   font-family: var(--display);
-  font-size: clamp(52px, 6vw, 96px);
+  font-size: clamp(40px, 4.5vw, 72px);
   font-weight: 800; line-height: 0.92; letter-spacing: -0.045em;
-  margin-bottom: 40px; color: var(--fg);
+  margin-bottom: 28px; color: var(--fg);
   transition: color 0.6s;
 }
 #contact-editorial.light-mode .contact-ed-title { color: var(--bg); }
@@ -860,13 +860,13 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 .model-phases-cta .btn { min-width: 220px; justify-content: center; }
 
 /* ─── CONTACT EDITORIAL FORM ─── */
-.contact-ed-form { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.contact-ed-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
 .contact-ed-input {
   background: rgba(240,237,232,0.06);
   border: 1px solid var(--border2);
   border-radius: 4px; color: var(--fg);
-  font-family: 'Inter', sans-serif; font-size: 14px;
-  padding: 14px 16px; outline: none; width: 100%;
+  font-family: 'Inter', sans-serif; font-size: 13px;
+  padding: 10px 14px; outline: none; width: 100%;
   transition: border-color 0.2s, background 0.2s;
 }
 .contact-ed-input:focus { border-color: var(--amber); background: rgba(200,169,110,0.05); }
@@ -878,7 +878,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 #contact-editorial.light-mode .contact-ed-input:focus { border-color: rgba(8,8,8,0.45); }
 #contact-editorial.light-mode .form-label { color: rgba(8,8,8,0.45); }
 .contact-ed-submit {
-  width: 100%; padding: 14px 24px; border-radius: 5px; font-size: 14px; font-weight: 600;
+  width: 100%; padding: 11px 24px; border-radius: 5px; font-size: 13px; font-weight: 600;
   cursor: pointer; border: 1px solid rgba(139,92,246,0.45); font-family: 'Inter', sans-serif;
   background: linear-gradient(110deg, rgba(99,102,241,0.24) 0%, rgba(139,92,246,0.22) 50%, rgba(236,72,153,0.24) 100%);
   color: #fff; box-shadow: 0 0 22px rgba(139,92,246,0.2); transition: all 0.2s;
@@ -1707,11 +1707,15 @@ html { overflow-x: hidden; }
 <section id="contact-editorial" style="border-top: 1px solid var(--border);">
   <div class="contact-ed-inner">
     <div class="contact-ed-img">
-      <img src="Images/docu.png" alt="Simplify.AI OS Architecture" id="contactImg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 0.8s ease;">
-      <div id="contactImg2" style="position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:40px;background:rgba(8,8,8,0.96);opacity:0;transition:opacity 0.8s ease;pointer-events:none;">
-        <div style="border:1px solid var(--border2);border-radius:8px;padding:32px 28px;max-width:320px;text-align:center;">
-          <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;">Ask Anything</div>
-          <p style="font-family:var(--display);font-size:clamp(18px,2.2vw,26px);font-weight:700;line-height:1.2;letter-spacing:-0.03em;color:var(--fg);">Got a question? Type it below.</p>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;background:var(--bg3);border-right:1px solid var(--border);">
+        <div style="width:100%;max-width:300px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;">Ask Us Anything</div>
+          <p style="font-family:var(--display);font-size:clamp(22px,2.8vw,36px);font-weight:800;line-height:1.1;letter-spacing:-0.04em;color:var(--fg);margin-bottom:32px;">Got a question?<br>Type it below.</p>
+          <div style="border:1px solid var(--border2);border-radius:6px;padding:14px 16px;background:rgba(240,237,232,0.04);color:var(--muted);font-family:'Inter',sans-serif;font-size:13px;">What would you like to know about Simplify.AI?</div>
+          <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;"><span style="display:inline-block;width:20px;height:1px;background:var(--border2);"></span>Response in 24 hours</div>
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;"><span style="display:inline-block;width:20px;height:1px;background:var(--border2);"></span>No commitment required</div>
+          </div>
         </div>
       </div>
     </div>
