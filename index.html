@@ -693,8 +693,8 @@ img { display: block; max-width: 100%; }
   position: absolute; bottom: 40px; right: 60px;
   opacity: 1; transition: opacity 0.6s;
 }
-.contact-ed-logo img { height: 40px; width: auto; filter: invert(1); transition: filter 0.6s; }
-#contact-editorial.light-mode .contact-ed-logo img { filter: invert(0); }
+.contact-ed-logo img { height: 40px; width: auto; mix-blend-mode: screen; opacity: 0.75; transition: opacity 0.6s; }
+#contact-editorial.light-mode .contact-ed-logo img { mix-blend-mode: multiply; opacity: 0.6; }
 
 /* Flying bots */
 .flying-bot {
@@ -1707,17 +1707,7 @@ html { overflow-x: hidden; }
 <section id="contact-editorial" style="border-top: 1px solid var(--border);">
   <div class="contact-ed-inner">
     <div class="contact-ed-img">
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;background:var(--bg3);border-right:1px solid var(--border);">
-        <div style="width:100%;max-width:300px;">
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;">Ask Us Anything</div>
-          <p style="font-family:var(--display);font-size:clamp(22px,2.8vw,36px);font-weight:800;line-height:1.1;letter-spacing:-0.04em;color:var(--fg);margin-bottom:32px;">Got a question?<br>Type it below.</p>
-          <div style="border:1px solid var(--border2);border-radius:6px;padding:14px 16px;background:rgba(240,237,232,0.04);color:var(--muted);font-family:'Inter',sans-serif;font-size:13px;">What would you like to know about Simplify.AI?</div>
-          <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;"><span style="display:inline-block;width:20px;height:1px;background:var(--border2);"></span>Response in 24 hours</div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;"><span style="display:inline-block;width:20px;height:1px;background:var(--border2);"></span>No commitment required</div>
-          </div>
-        </div>
-      </div>
+      <img src="Images/docu.png" alt="Simplify.AI OS Architecture" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.65) contrast(1.1);">
     </div>
     <div class="contact-ed-content">
       <div class="contact-ed-eyebrow">Get In Touch</div>
@@ -1732,8 +1722,8 @@ html { overflow-x: hidden; }
           <input type="email" class="contact-ed-input" placeholder="you@company.com" required>
         </div>
         <div class="form-field">
-          <label class="form-label">Company</label>
-          <input type="text" class="contact-ed-input" placeholder="Your company">
+          <label class="form-label">Your Question</label>
+          <textarea class="contact-ed-input" placeholder="Got a question? Type it below here..." rows="3" style="resize:none;line-height:1.5;"></textarea>
         </div>
         <button type="submit" class="contact-ed-submit">Get In Touch →</button>
       </form>
