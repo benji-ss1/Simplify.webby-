@@ -352,7 +352,7 @@ img { display: block; max-width: 100%; }
   padding: 120px 40px;
   max-width: 1200px; margin: 0 auto; width: 100%;
 }
-.dt-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; align-items: end; }
+.dt-header { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px; }
 .dt-label {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
   text-transform: uppercase; color: rgba(139,92,246,0.9);
@@ -361,8 +361,8 @@ img { display: block; max-width: 100%; }
 .dt-label::before { content: ''; width: 28px; height: 1px; background: rgba(139,92,246,0.7); }
 .dt-h {
   font-family: var(--display);
-  font-size: clamp(44px, 6vw, 96px); font-weight: 800; line-height: 0.92;
-  letter-spacing: -0.04em;
+  font-size: clamp(28px, 4.6vw, 68px); font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.04em; white-space: nowrap;
 }
 .dt-h .grad { background: linear-gradient(110deg, #a5b4fc, #c084fc, #f9a8d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .dt-sub { font-size: 16px; line-height: 1.75; color: rgba(240,237,232,0.55); }
@@ -592,7 +592,7 @@ html { overflow-x: hidden; }
   /* Digital transform */
   .dt-content { padding: 80px 20px; }
   .dt-header { grid-template-columns: 1fr !important; }
-  .dt-h { font-size: clamp(36px, 9vw, 72px) !important; }
+  .dt-h { font-size: clamp(18px, 4.8vw, 36px) !important; white-space: normal !important; }
   .dt-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
   .dt-cta-wrap { align-items: flex-start; }
   .dt-pillars { grid-template-columns: 1fr !important; }
@@ -615,7 +615,8 @@ html { overflow-x: hidden; }
 @media (max-width: 480px) {
   .about-hero-h1 { font-size: clamp(24px, 7vw, 40px) !important; }
   .platform-stmt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
-  .wwb-h, .origin-h, .dt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
+  .wwb-h, .origin-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
+  .dt-h { font-size: clamp(14px, 3.8vw, 26px) !important; white-space: normal !important; }
   .pull-quote-text { font-size: clamp(20px, 7vw, 36px) !important; }
   .manifesto-lede { font-size: clamp(20px, 6vw, 32px) !important; }
   .cta-h { font-size: clamp(22px, 7.5vw, 40px) !important; }
@@ -631,7 +632,6 @@ html { overflow-x: hidden; }
 <nav id="nav">
   <a href="index.html" class="nav-logo" data-nav>
     <img src="Images/logo.png" alt="Simplify.AI">
-    Simplify.AI
   </a>
   <div class="nav-links">
     <a href="index.html#plates" data-nav>Platform</a>
@@ -803,9 +803,7 @@ html { overflow-x: hidden; }
     <div class="dt-header">
       <div>
         <div class="dt-label">04 &nbsp;Digital Transformation</div>
-        <h2 class="dt-h reveal">
-          We're Not<br>Stopping At<br><span class="grad">Dashboards.</span>
-        </h2>
+        <h2 class="dt-h reveal">We're Not Stopping At <span class="grad">Dashboards.</span></h2>
       </div>
       <div>
         <p class="dt-sub reveal reveal-d1">The next chapter of Simplify.AI is already in motion. We're building out a full digital transformation offering that covers everything a modern business needs to compete and grow.</p>
@@ -834,16 +832,6 @@ html { overflow-x: hidden; }
       </div>
     </div>
 
-    <div class="dt-bottom reveal reveal-d3">
-      <div>
-        <p class="dt-closing">We're ready to help you take over.</p>
-        <p class="dt-watch" style="margin-top: 14px;">Watch this space.</p>
-      </div>
-      <div class="dt-cta-wrap">
-        <button class="btn primary" onclick="openCalendly()">Book a Discovery Call →</button>
-        <span style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: rgba(240,237,232,0.25); text-transform: uppercase;">30 min · Google Meet · Free</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -864,7 +852,7 @@ html { overflow-x: hidden; }
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name"><img src="Images/logo.png" alt="Simplify.AI">Simplify.AI</div>
+      <div class="footer-brand-name"><img src="Images/logo.png" alt="Simplify.AI"></div>
       <p class="footer-tagline">Removed Chaos. Introduced Clarity. So Your Team Can Focus On Growth Instead Of Operational Noise.</p>
     </div>
     <div class="footer-col">
