@@ -95,6 +95,36 @@ img { display: block; max-width: 100%; }
 .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav-hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg); margin: 5px 0; }
 
+/* ─── MOBILE NAV ─── */
+.mobile-nav-overlay {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: rgba(8,8,8,0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.mobile-nav-overlay.open { display: block; }
+.mobile-nav-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 195;
+  width: min(300px, 85vw); background: #0d0d0d; border-left: 1px solid var(--border2);
+  padding: 72px 28px 40px; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  overflow-y: auto;
+}
+.mobile-nav-drawer.open { transform: translateX(0); }
+.mob-nav-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: 1px solid var(--border2); border-radius: 4px;
+  color: var(--muted); cursor: pointer; padding: 5px 12px; font-size: 12px;
+  font-family: 'Inter', sans-serif; transition: all 0.2s;
+}
+.mob-nav-close:hover { color: var(--fg); border-color: var(--fg); }
+.mob-nav-link {
+  display: block; padding: 15px 0; font-size: 15px; font-weight: 600; color: var(--muted);
+  border-bottom: 1px solid var(--border); text-decoration: none; transition: color 0.2s;
+}
+.mob-nav-link:hover { color: var(--fg); }
+.mob-nav-link.active { color: var(--fg); }
+.mob-nav-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.mob-nav-btns .n-btn { width: 100%; text-align: center; padding: 12px 18px; font-size: 14px; }
+
 /* ─── HERO ─── */
 #about-hero {
   min-height: 100vh; position: relative; overflow: hidden;
@@ -361,8 +391,8 @@ img { display: block; max-width: 100%; }
 .dt-label::before { content: ''; width: 28px; height: 1px; background: rgba(139,92,246,0.7); }
 .dt-h {
   font-family: var(--display);
-  font-size: clamp(28px, 4.6vw, 68px); font-weight: 800; line-height: 0.95;
-  letter-spacing: -0.04em; white-space: nowrap;
+  font-size: clamp(26px, 3.4vw, 52px); font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.04em;
 }
 .dt-h .grad { background: linear-gradient(110deg, #a5b4fc, #c084fc, #f9a8d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .dt-sub { font-size: 16px; line-height: 1.75; color: rgba(240,237,232,0.55); }
@@ -592,7 +622,7 @@ html { overflow-x: hidden; }
   /* Digital transform */
   .dt-content { padding: 80px 20px; }
   .dt-header { grid-template-columns: 1fr !important; }
-  .dt-h { font-size: clamp(18px, 4.8vw, 36px) !important; white-space: normal !important; }
+  .dt-h { font-size: clamp(20px, 5vw, 38px) !important; }
   .dt-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
   .dt-cta-wrap { align-items: flex-start; }
   .dt-pillars { grid-template-columns: 1fr !important; }
@@ -616,7 +646,7 @@ html { overflow-x: hidden; }
   .about-hero-h1 { font-size: clamp(24px, 7vw, 40px) !important; }
   .platform-stmt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
   .wwb-h, .origin-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
-  .dt-h { font-size: clamp(14px, 3.8vw, 26px) !important; white-space: normal !important; }
+  .dt-h { font-size: clamp(18px, 5vw, 30px) !important; }
   .pull-quote-text { font-size: clamp(20px, 7vw, 36px) !important; }
   .manifesto-lede { font-size: clamp(20px, 6vw, 32px) !important; }
   .cta-h { font-size: clamp(22px, 7.5vw, 40px) !important; }
@@ -642,10 +672,22 @@ html { overflow-x: hidden; }
     <button class="n-btn" onclick="showToast('Login system launching soon')">Log In</button>
     <button class="n-btn solid" onclick="openCalendly()">Book Demo</button>
   </div>
-  <button class="nav-hamburger" onclick="showToast('Open on desktop for full nav')">
+  <button class="nav-hamburger" onclick="openMobileNav()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile navigation">
+  <button class="mob-nav-close" onclick="closeMobileNav()">✕ Close</button>
+  <a class="mob-nav-link" href="index.html#plates" onclick="closeMobileNav()">Platform</a>
+  <a class="mob-nav-link active" href="about.html" onclick="closeMobileNav()">About</a>
+  <a class="mob-nav-link" href="index.html#contact-form-section" onclick="closeMobileNav()">Contact</a>
+  <div class="mob-nav-btns">
+    <button class="n-btn" onclick="closeMobileNav(); showToast('Login system launching soon')">Log In</button>
+    <button class="n-btn solid" onclick="closeMobileNav(); openCalendly()">Book Demo</button>
+  </div>
+</div>
 
 <!-- ─── HERO ─── -->
 <section id="about-hero">
@@ -903,6 +945,18 @@ document.querySelectorAll('[data-nav]').forEach(el => {
     setTimeout(() => { window.location.href = href; }, 440);
   });
 });
+
+// ── MOBILE NAV ──
+function openMobileNav() {
+  document.getElementById('mobileNavOverlay').classList.add('open');
+  document.getElementById('mobileNavDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileNav() {
+  document.getElementById('mobileNavOverlay').classList.remove('open');
+  document.getElementById('mobileNavDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 // ── TOAST ──
 function showToast(msg) {
