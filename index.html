@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="Images/logo.png">
 <style>
 /* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -958,15 +959,11 @@ html { overflow-x: hidden; }
   #partners { padding: 60px 20px !important; }
 
   /* ─ Nav ─ */
-  #nav { padding: 0 20px; position: relative; }
+  #nav { padding: 0 20px; }
   .nav-links { display: none; }
+  .nav-right { display: none; }
   .nav-hamburger { display: none; }
-  .n-btn.solid { display: none; }
   .mob-menu-trigger { display: flex; }
-  .nav-logo {
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
-  }
 
   /* ─ Hero headline: safe clamp so even long phrases wrap ─ */
   .mission-h1 { font-size: clamp(28px, 8vw, 52px) !important; line-height: 1.05; }
@@ -1295,13 +1292,13 @@ html { overflow-x: hidden; }
   text-transform: uppercase; color: var(--amber);
 }
 
-/* ─── MOBILE CIRCULAR NAV MENU ─── */
+/* ─── MOBILE NAV MENU ─── */
 .mob-menu-trigger {
   display: none; width: 38px; height: 38px; border-radius: 50%;
   background: rgba(240,237,232,0.08); border: 1px solid var(--border2);
   cursor: pointer; align-items: center; justify-content: center;
-  flex-shrink: 0; z-index: 202; position: relative;
-  transition: background 0.2s; padding: 0;
+  flex-shrink: 0; padding: 0;
+  transition: background 0.2s;
 }
 .mob-menu-trigger:hover { background: rgba(240,237,232,0.16); }
 .mob-trigger-lines { display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
@@ -1316,37 +1313,39 @@ html { overflow-x: hidden; }
 .mob-menu-trigger.open .mob-trigger-lines span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
 .mob-circle-menu {
-  position: fixed; inset: 0; z-index: 200;
-  background: #0d0d0d;
-  clip-path: circle(0% at 30px 30px);
-  transition: clip-path 0.6s cubic-bezier(0.22,1,0.36,1);
+  position: fixed; top: 0; left: 0; right: 0; height: 100dvh;
+  z-index: 210; background: #0d0d0d;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 8px; pointer-events: none;
+  gap: 4px; pointer-events: none;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
 }
 .mob-circle-menu.open {
-  clip-path: circle(160% at 30px 30px);
+  transform: translateY(0);
   pointer-events: all;
 }
 .mob-circle-link {
   font-family: var(--display);
-  font-size: clamp(40px, 11vw, 68px);
+  font-size: clamp(42px, 12vw, 72px);
   font-weight: 800; letter-spacing: -0.04em;
-  color: var(--fg); text-decoration: none; line-height: 1.1;
-  opacity: 0; transform: translateY(24px);
-  transition: color 0.2s, opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  color: var(--fg); text-decoration: none; line-height: 1.15;
+  opacity: 0; transform: translateY(20px);
+  transition: color 0.2s,
+    opacity 0.4s cubic-bezier(0.22,1,0.36,1),
+    transform 0.4s cubic-bezier(0.22,1,0.36,1);
   display: block;
 }
-.mob-circle-menu.open .mob-circle-link:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
-.mob-circle-menu.open .mob-circle-link:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.30s; }
-.mob-circle-menu.open .mob-circle-link:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
-.mob-circle-link:hover { color: var(--amber); }
+.mob-circle-menu.open .mob-circle-link:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.18s; }
+.mob-circle-menu.open .mob-circle-link:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.26s; }
+.mob-circle-menu.open .mob-circle-link:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.34s; }
+.mob-circle-link:active, .mob-circle-link:hover { color: var(--amber); }
 .mob-circle-menu-login {
-  margin-top: 40px;
-  opacity: 0; transform: translateY(16px);
-  transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  margin-top: 44px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
 }
-.mob-circle-menu.open .mob-circle-menu-login { opacity: 1; transform: translateY(0); transition-delay: 0.46s; }
+.mob-circle-menu.open .mob-circle-menu-login { opacity: 1; transform: none; transition-delay: 0.42s; }
 
 /* ─── MOBILE FOCUS RAIL ─── */
 @media (max-width: 768px) {
@@ -1372,9 +1371,6 @@ html { overflow-x: hidden; }
 
 <!-- ─── NAV ─── -->
 <nav id="nav">
-  <button class="mob-menu-trigger" id="mobMenuTrigger" onclick="toggleMobCircleMenu()" aria-label="Menu">
-    <div class="mob-trigger-lines"><span></span><span></span><span></span></div>
-  </button>
   <a href="#" class="nav-logo">
     <img src="Images/logo.png" alt="Simplify.AI">
   </a>
@@ -1387,8 +1383,8 @@ html { overflow-x: hidden; }
     <button class="n-btn" onclick="openLoginModal()">Log In</button>
     <button class="n-btn solid" onclick="openCalendly()">Book Demo</button>
   </div>
-  <button class="nav-hamburger" aria-label="Open menu" style="display:none">
-    <span></span><span></span><span></span>
+  <button class="mob-menu-trigger" id="mobMenuTrigger" onclick="toggleMobCircleMenu()" aria-label="Menu">
+    <div class="mob-trigger-lines"><span></span><span></span><span></span></div>
   </button>
 </nav>
 
@@ -1525,13 +1521,11 @@ html { overflow-x: hidden; }
     <div class="os-slideshow reveal reveal-d3" id="osSlideshow">
       <div class="os-slide active"><img src="Images/simplifieddash.png" alt="Business OS" loading="lazy"></div>
       <div class="os-slide"><img src="Images/dash1.png" alt="Platform Dashboard" loading="lazy"></div>
-      <div class="os-slide"><img src="Images/slide00.png" alt="Operations View" loading="lazy"></div>
       <div class="os-slide"><img src="Images/slide000.png" alt="Workflow Overview" loading="lazy"></div>
       <div class="os-slide-dots" id="osDots">
         <div class="os-dot active" onclick="goOsSlide(0)"></div>
         <div class="os-dot" onclick="goOsSlide(1)"></div>
         <div class="os-dot" onclick="goOsSlide(2)"></div>
-        <div class="os-dot" onclick="goOsSlide(3)"></div>
       </div>
     </div>
   </div>
