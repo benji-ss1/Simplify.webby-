@@ -249,15 +249,14 @@ img { display: block; max-width: 100%; }
 }
 .plate-card:hover .plate-img-full { transform: scale(1.04); }
 
-/* Gradient mask: heavy at top (hides baked-in label text) and heavy at bottom (shows only my overlay text) */
 .plate-mask {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(to bottom,
-    rgba(8,8,8,0.88) 0%,
-    rgba(8,8,8,0.22) 22%,
-    rgba(8,8,8,0.18) 55%,
-    rgba(8,8,8,0.9) 78%,
-    rgba(8,8,8,0.97) 100%
+    rgba(8,8,8,0.18) 0%,
+    rgba(8,8,8,0.05) 30%,
+    rgba(8,8,8,0.08) 55%,
+    rgba(8,8,8,0.72) 78%,
+    rgba(8,8,8,0.88) 100%
   );
 }
 .plate-info {
@@ -424,7 +423,7 @@ img { display: block; max-width: 100%; }
   cursor: pointer; will-change: transform, opacity, filter;
   transition: transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.7s, filter 0.7s;
 }
-.fr-card img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.fr-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .fr-footer {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 20;
   padding: 0 60px 44px;
@@ -1411,7 +1410,7 @@ html { overflow-x: hidden; }
       </div>
     </div>
     <div class="plate-card reveal reveal-d2">
-      <img class="plate-img-full" src="Images/plate-bottleneck.png" alt="Founder Bottleneck" loading="lazy">
+      <img class="plate-img-full" src="Images/founder-bottleneck.png" alt="Founder Bottleneck" loading="lazy">
       <div class="plate-mask"></div>
       <div class="plate-info">
         <div class="plate-id">Founder Bottleneck</div>
