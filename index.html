@@ -906,16 +906,21 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 #contact-editorial.light-mode .contact-ed-input::placeholder { color: rgba(8,8,8,0.4); }
 #contact-editorial.light-mode .contact-ed-input:focus { border-color: rgba(8,8,8,0.45); }
 #contact-editorial.light-mode .form-label { color: rgba(8,8,8,0.45); }
+.contact-ed-cta-wrap {
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 0 8px; margin-bottom: 24px;
+}
 .contact-ed-submit {
-  width: 100%; padding: 11px 24px; border-radius: 5px; font-size: 13px; font-weight: 600;
+  width: 100%; padding: 18px 32px; border-radius: 8px; font-size: 16px; font-weight: 700;
   cursor: pointer; border: 1px solid rgba(139,92,246,0.45); font-family: 'Inter', sans-serif;
   background: linear-gradient(110deg, rgba(99,102,241,0.24) 0%, rgba(139,92,246,0.22) 50%, rgba(236,72,153,0.24) 100%);
-  color: #fff; box-shadow: 0 0 22px rgba(139,92,246,0.2); transition: all 0.2s;
+  color: #fff; box-shadow: 0 0 32px rgba(139,92,246,0.25); transition: all 0.25s;
+  letter-spacing: 0.01em;
 }
 .contact-ed-submit:hover {
   background: linear-gradient(110deg, rgba(99,102,241,0.44) 0%, rgba(139,92,246,0.4) 50%, rgba(236,72,153,0.44) 100%);
-  border-color: rgba(139,92,246,0.72); box-shadow: 0 0 38px rgba(139,92,246,0.36);
-  transform: translateY(-1px); color: #fff;
+  border-color: rgba(139,92,246,0.72); box-shadow: 0 0 48px rgba(139,92,246,0.4);
+  transform: translateY(-2px); color: #fff;
 }
 
 /* ═══ MOBILE-FIRST OVERHAUL ═══ */
@@ -1785,21 +1790,9 @@ html { overflow-x: hidden; }
     <div class="contact-ed-content">
       <div class="contact-ed-eyebrow">Get In Touch</div>
       <h2 class="contact-ed-title">Want Us To<br>Build Your<br>OS?</h2>
-      <form class="contact-ed-form" onsubmit="handleEdFormSubmit(event)">
-        <div class="form-field">
-          <label class="form-label">Name</label>
-          <input type="text" class="contact-ed-input" placeholder="Your name" required>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Email</label>
-          <input type="email" class="contact-ed-input" placeholder="you@company.com" required>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Your Question</label>
-          <textarea class="contact-ed-input" placeholder="Got a question? Type it below here..." rows="3" style="resize:none;line-height:1.5;"></textarea>
-        </div>
-        <button type="submit" class="contact-ed-submit">Book a Demo Now →</button>
-      </form>
+      <div class="contact-ed-cta-wrap">
+        <button class="contact-ed-submit" onclick="openCalendly()">Book a Demo Now →</button>
+      </div>
       <div class="contact-ed-logo">
         <img src="Images/logo.png" alt="Simplify.AI">
       </div>
