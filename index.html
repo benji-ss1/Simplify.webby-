@@ -55,11 +55,7 @@ img { display: block; max-width: 100%; }
   transition: opacity 0.7s ease-out 0.3s, visibility 0.7s ease-out 0.3s;
 }
 .page-intro.gone { opacity: 0; visibility: hidden; }
-.page-intro-logo {
-  width: clamp(200px, 36vw, 380px); height: auto;
-  mix-blend-mode: screen;
-  animation: introFade 1s cubic-bezier(0.22,1,0.36,1) both;
-}
+.page-intro-logo { display: none; }
 @keyframes introFade {
   from { opacity: 0; transform: scale(0.96); }
   to   { opacity: 1; transform: scale(1); }
@@ -132,7 +128,7 @@ img { display: block; max-width: 100%; }
 }
 .mission-h1 {
   font-family: var(--display);
-  font-size: clamp(48px, 8vw, 128px);
+  font-size: clamp(42px, 6.5vw, 96px);
   font-weight: 800; line-height: 1.0; letter-spacing: -0.04em;
   max-width: 1200px; margin: 0 auto;
   opacity: 0; animation: fadeUp 1s 0.6s ease-out forwards;
@@ -193,8 +189,9 @@ img { display: block; max-width: 100%; }
 .marquee-wrap {
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   background: var(--bg2); overflow: hidden; padding: 14px 0;
+  contain: layout style; touch-action: pan-y; user-select: none;
 }
-.marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+.marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; will-change: transform; backface-visibility: hidden; }
 .marquee-item {
   display: flex; align-items: center; gap: 40px; padding-right: 40px;
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
@@ -328,10 +325,19 @@ img { display: block; max-width: 100%; }
 }
 
 /* ─── OS SECTION WITH SLIDESHOW ─── */
-#os { background: var(--fg); color: var(--bg); border-top: 1px solid rgba(8,8,8,0.1); }
-#os .s-label { color: rgba(8,8,8,0.4); }
-#os .s-label::after { background: rgba(8,8,8,0.12); }
-#os .s-h em { color: rgba(8,8,8,0.35); }
+#os { background: var(--bg); color: var(--fg); border-top: 1px solid var(--border); }
+#os .s-label { color: var(--muted); }
+#os .s-label::after { background: var(--border); }
+#os .s-h em { color: var(--muted); }
+#os .os-desc { color: var(--muted); }
+#os .os-pt { border-top-color: var(--border); }
+#os .os-pt:last-child { border-bottom-color: var(--border); }
+#os .os-pt-n { color: var(--muted); }
+#os .os-pt-title { color: var(--fg); }
+#os .os-pt-desc { color: var(--muted); }
+#os .os-slideshow { border-color: var(--border2); background: rgba(240,237,232,0.04); }
+#os .os-dot { background: rgba(240,237,232,0.15); border-color: rgba(240,237,232,0.25); }
+#os .os-dot.active { background: var(--fg); }
 
 .os-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 64px; align-items: center; }
 .os-text .s-h { margin-bottom: 28px; }
@@ -849,6 +855,55 @@ footer { border-top: 1px solid var(--border); padding: 64px 40px 32px; backgroun
 .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; }
 .reveal-d3 { transition-delay: 0.3s; } .reveal-d4 { transition-delay: 0.4s; }
 
+/* ─── LOGO MARK ─── */
+.logo-mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; color: var(--amber); font-size: 22px;
+  line-height: 1; flex-shrink: 0; font-family: 'Inter', sans-serif;
+}
+.page-intro-mark { animation: introFade 1s cubic-bezier(0.22,1,0.36,1) both; text-align: center; }
+.page-intro-wordmark {
+  font-family: var(--display); font-size: clamp(40px, 10vw, 100px); font-weight: 800;
+  letter-spacing: -0.04em; color: var(--fg);
+}
+.page-intro-wordmark .pi-dot { color: var(--amber); }
+
+/* ─── MODEL UNIFIED PHASES ─── */
+.model-phases-cta {
+  margin-top: 32px; display: flex; justify-content: center;
+}
+.model-phases-cta .btn { min-width: 220px; justify-content: center; }
+
+/* ─── CONTACT EDITORIAL FORM ─── */
+.contact-ed-form { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.contact-ed-input {
+  background: rgba(240,237,232,0.06);
+  border: 1px solid var(--border2);
+  border-radius: 4px; color: var(--fg);
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  padding: 14px 16px; outline: none; width: 100%;
+  transition: border-color 0.2s, background 0.2s;
+}
+.contact-ed-input:focus { border-color: var(--amber); background: rgba(200,169,110,0.05); }
+.contact-ed-input::placeholder { color: var(--muted); }
+#contact-editorial.light-mode .contact-ed-input {
+  background: rgba(8,8,8,0.06); border-color: rgba(8,8,8,0.18); color: var(--bg);
+}
+#contact-editorial.light-mode .contact-ed-input::placeholder { color: rgba(8,8,8,0.4); }
+#contact-editorial.light-mode .contact-ed-input:focus { border-color: rgba(8,8,8,0.45); }
+#contact-editorial.light-mode .form-label { color: rgba(8,8,8,0.45); }
+.contact-ed-submit {
+  width: 100%; padding: 14px 24px; border-radius: 5px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 1px solid rgba(139,92,246,0.45); font-family: 'Inter', sans-serif;
+  background: linear-gradient(110deg, rgba(99,102,241,0.24) 0%, rgba(139,92,246,0.22) 50%, rgba(236,72,153,0.24) 100%);
+  color: #fff; box-shadow: 0 0 22px rgba(139,92,246,0.2); transition: all 0.2s;
+}
+.contact-ed-submit:hover {
+  background: linear-gradient(110deg, rgba(99,102,241,0.44) 0%, rgba(139,92,246,0.4) 50%, rgba(236,72,153,0.44) 100%);
+  border-color: rgba(139,92,246,0.72); box-shadow: 0 0 38px rgba(139,92,246,0.36);
+  transform: translateY(-1px); color: #fff;
+}
+
 /* ═══ MOBILE-FIRST OVERHAUL ═══ */
 
 /* Prevent ALL horizontal overflow at root level */
@@ -957,6 +1012,8 @@ html { overflow-x: hidden; }
   .model-phases { grid-template-columns: 1fr !important; }
   .m-phase { padding: 32px 24px; }
   .m-phase-title { font-size: 24px; }
+  .model-phases-cta { margin-top: 20px; }
+  .model-phases-cta .btn { width: 100%; max-width: 300px; }
 
   /* ─ Integrations ─ */
   #integrations .integ-head { grid-template-columns: 1fr !important; gap: 24px; }
@@ -1009,7 +1066,7 @@ html { overflow-x: hidden; }
 
 /* ── 480px — extra small screens (iPhone SE etc) ── */
 @media (max-width: 480px) {
-  .mission-h1 { font-size: clamp(22px, 7.5vw, 36px) !important; }
+  .mission-h1 { font-size: clamp(24px, 7.5vw, 38px) !important; }
   .s-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
   .cta-h { font-size: clamp(22px, 7.5vw, 40px) !important; }
 
@@ -1272,7 +1329,9 @@ html { overflow-x: hidden; }
 
 <!-- ─── PAGE INTRO ─── -->
 <div class="page-intro" id="pageIntro">
-  <img class="page-intro-logo" src="Images/logo.png" alt="Simplify.AI">
+  <div class="page-intro-mark">
+    <div class="page-intro-wordmark">Simplify<span class="pi-dot">.</span>AI</div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1280,16 +1339,13 @@ html { overflow-x: hidden; }
 <!-- ─── NAV ─── -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="Images/logo.png" alt="Simplify.AI">
+    <span class="logo-mark">●</span>
     Simplify.AI
   </a>
   <div class="nav-links">
     <a href="#plates">Platform</a>
-    <a href="#how">How It Works</a>
-    <a href="#integrations">Integrations</a>
-    <a href="#model">Engagement</a>
-    <a href="#contact-form-section">Contact</a>
     <a href="about.html">About</a>
+    <a href="#contact-form-section">Contact</a>
   </div>
   <div class="nav-right">
     <button class="n-btn" onclick="openLoginModal()">Log In</button>
@@ -1305,11 +1361,8 @@ html { overflow-x: hidden; }
 <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile navigation">
   <button class="mob-nav-close" onclick="closeMobileNav()">✕ Close</button>
   <a class="mob-nav-link" href="#plates" onclick="closeMobileNav()">Platform</a>
-  <a class="mob-nav-link" href="#how" onclick="closeMobileNav()">How It Works</a>
-  <a class="mob-nav-link" href="#integrations" onclick="closeMobileNav()">Integrations</a>
-  <a class="mob-nav-link" href="#model" onclick="closeMobileNav()">Engagement</a>
+  <a class="mob-nav-link" href="about.html" onclick="closeMobileNav()">About</a>
   <a class="mob-nav-link" href="#contact-form-section" onclick="closeMobileNav()">Contact</a>
-  <a class="mob-nav-link" href="about.html">About</a>
   <div class="mob-nav-btns">
     <button class="n-btn" onclick="closeMobileNav(); openLoginModal()">Log In</button>
     <button class="n-btn solid" onclick="closeMobileNav(); openCalendly()">Book Demo</button>
@@ -1325,7 +1378,7 @@ html { overflow-x: hidden; }
       <span class="mission-phrase" id="heroPhrase">Operational Clarity.</span>
     </span>
   </h1>
-  <div class="mission-eyebrow">Simplify.AI — Operational Infrastructure</div>
+  <div class="mission-eyebrow">Operational Infrastructure</div>
   <p class="hero-body">In deal-based businesses, operational fragmentation compounds fast. When your team spends more time chasing updates than driving growth — the issue isn't effort. It's operational infrastructure.</p>
   <div class="hero-ctas">
     <button class="btn primary" onclick="openCalendly()">Book A Demo →</button>
@@ -1359,7 +1412,7 @@ html { overflow-x: hidden; }
 <section class="section bg2" id="plates">
   <div class="s-label reveal">01  Operational Fragmentation</div>
   <div class="plates-intro">
-    <h2 class="s-h reveal">Growth Creates<br><em>Complexity.</em></h2>
+    <h2 class="s-h reveal">Growth Creates Complexity.</h2>
     <p class="plates-intro-right reveal reveal-d2">Most recruitment firms, agencies, sales teams, and service businesses don't slow down because demand disappears. They slow down because operations become harder to manage as growth increases. Simplify.AI was built to centralise the operational side of growing businesses before fragmentation becomes the bottleneck.</p>
   </div>
   <div class="plates-grid">
@@ -1572,9 +1625,8 @@ html { overflow-x: hidden; }
         <li>Infrastructure planning</li>
         <li>Friction identification</li>
       </ul>
-      <button class="m-phase-cta" onclick="openCalendly()">Schedule Audit Call</button>
     </div>
-    <div class="m-phase featured">
+    <div class="m-phase">
       <div class="m-phase-label">Phase 02</div>
       <div class="m-phase-title">Build</div>
       <div class="m-phase-time">INFRASTRUCTURE BUILD</div>
@@ -1585,7 +1637,6 @@ html { overflow-x: hidden; }
         <li>Team onboarded</li>
         <li>Workflows operational</li>
       </ul>
-      <button class="m-phase-cta" onclick="openPhaseModal('Phase 02 · Build','Start Your Infrastructure Build')">Start Infrastructure Build</button>
     </div>
     <div class="m-phase">
       <div class="m-phase-label">Phase 03</div>
@@ -1597,8 +1648,10 @@ html { overflow-x: hidden; }
         <li>Performance monitoring</li>
         <li>Dedicated operational support</li>
       </ul>
-      <button class="m-phase-cta" onclick="openPhaseModal('Phase 03 · Optimise','Join the Optimisation Programme')">Join Optimise Programme</button>
     </div>
+  </div>
+  <div class="model-phases-cta reveal reveal-d2">
+    <button class="btn primary" onclick="openCalendly()">Book a Demo →</button>
   </div>
 </section>
 
@@ -1679,28 +1732,29 @@ html { overflow-x: hidden; }
     <div class="contact-ed-content">
       <div class="contact-ed-eyebrow">Get In Touch</div>
       <h2 class="contact-ed-title">Let Us<br>Build Your<br>OS.</h2>
-      <div class="contact-ed-details">
-        <div class="contact-ed-detail">
-          <span class="contact-ed-detail-label">PHONE</span>
-          <a href="tel:+3530852545229" class="contact-ed-detail-val" style="text-decoration: none;">+353 085 254 5229</a>
+      <form class="contact-ed-form" onsubmit="handleEdFormSubmit(event)">
+        <div class="form-field">
+          <label class="form-label">Name</label>
+          <input type="text" class="contact-ed-input" placeholder="Your name" required>
         </div>
-        <div class="contact-ed-detail">
-          <span class="contact-ed-detail-label">EMAIL</span>
-          <a href="mailto:benj.sanusi@gmail.com" class="contact-ed-detail-val" style="text-decoration: none;">benj.sanusi@gmail.com</a>
+        <div class="form-field">
+          <label class="form-label">Email</label>
+          <input type="email" class="contact-ed-input" placeholder="you@company.com" required>
         </div>
-        <div class="contact-ed-detail">
-          <span class="contact-ed-detail-label">BASE</span>
-          <span class="contact-ed-detail-val">Ireland, Remote Worldwide</span>
+        <div class="form-field">
+          <label class="form-label">Company</label>
+          <input type="text" class="contact-ed-input" placeholder="Your company">
         </div>
-      </div>
+        <button type="submit" class="contact-ed-submit">Get In Touch →</button>
+      </form>
       <button class="contact-cta-btn" id="contactToggleBtn" onclick="toggleContactMode(this)" title="Toggle theme">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"/>
           <polyline points="12 5 19 12 12 19"/>
         </svg>
       </button>
-      <div class="contact-ed-logo">
-        <img src="Images/logo.png" alt="Simplify.AI">
+      <div class="contact-ed-logo" style="font-family:var(--display);font-size:15px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;">
+        <span class="logo-mark" style="font-size:16px;">●</span>Simplify.AI
       </div>
     </div>
   </div>
@@ -1758,7 +1812,7 @@ html { overflow-x: hidden; }
 <footer id="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name"><img src="Images/logo.png" alt="Simplify.AI">Simplify.AI</div>
+      <div class="footer-brand-name"><span class="logo-mark">●</span>Simplify.AI</div>
       <p class="footer-tagline">Removed Chaos. Introduced Clarity. So Your Team Can Focus On Growth Instead Of Operational Noise.</p>
     </div>
     <div class="footer-col">
@@ -1798,7 +1852,7 @@ html { overflow-x: hidden; }
 <div class="push-notif" id="pushNotif" role="alert" aria-live="polite">
   <button class="push-notif-dismiss" onclick="dismissPushNotif()" aria-label="Dismiss">×</button>
   <div class="push-notif-header">
-    <img class="push-notif-logo" src="Images/logo.png" alt="Simplify.AI">
+    <span class="logo-mark" style="width:26px;height:26px;font-size:18px;">●</span>
     <div class="push-notif-brand">Simplify.AI</div>
     <div class="push-notif-badge">New</div>
   </div>
@@ -1848,7 +1902,7 @@ html { overflow-x: hidden; }
   <div class="login-modal">
     <button class="login-modal-close" onclick="closeLoginModal(null)">✕ Close</button>
     <div class="login-modal-logo">
-      <img src="Images/logo.png" alt="Simplify.AI">
+      <span class="logo-mark" style="font-size:18px;">●</span>
       <span>Simplify.AI</span>
     </div>
     <div class="login-modal-title">Welcome Back.</div>
@@ -2097,6 +2151,13 @@ function spawnBots(origin) {
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 1800);
   }
+}
+
+// ── CONTACT EDITORIAL FORM ──
+function handleEdFormSubmit(e) {
+  e.preventDefault();
+  showToast('Message sent! We will be in touch within 24 hours.');
+  e.target.reset();
 }
 
 // ── CONTACT FORM ──
