@@ -135,7 +135,7 @@ img { display: block; max-width: 100%; }
 .about-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
 .about-hero-h1 {
   font-family: var(--display);
-  font-size: clamp(52px, 7.5vw, 130px);
+  font-size: clamp(40px, 5.2vw, 88px);
   font-weight: 800; line-height: 0.92; letter-spacing: -0.045em;
   margin-bottom: 48px;
 }
@@ -551,7 +551,7 @@ html { overflow-x: hidden; }
   #about-cta { padding-top: 100px; padding-bottom: 100px; }
 
   /* About hero heading */
-  .about-hero-h1 { font-size: clamp(36px, 9vw, 72px) !important; }
+  .about-hero-h1 { font-size: clamp(32px, 7.5vw, 60px) !important; }
   .about-hero-meta { flex-direction: column; align-items: flex-start; gap: 20px; }
   .scroll-indicator { margin-left: 0; }
 
@@ -613,7 +613,7 @@ html { overflow-x: hidden; }
 
 /* ── 480px ── */
 @media (max-width: 480px) {
-  .about-hero-h1 { font-size: clamp(28px, 8vw, 48px) !important; }
+  .about-hero-h1 { font-size: clamp(24px, 7vw, 40px) !important; }
   .platform-stmt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
   .wwb-h, .origin-h, .dt-h { font-size: clamp(22px, 7.5vw, 36px) !important; }
   .pull-quote-text { font-size: clamp(20px, 7vw, 36px) !important; }
@@ -635,10 +635,8 @@ html { overflow-x: hidden; }
   </a>
   <div class="nav-links">
     <a href="index.html#plates" data-nav>Platform</a>
-    <a href="index.html#how" data-nav>How It Works</a>
-    <a href="index.html#integrations" data-nav>Integrations</a>
-    <a href="index.html#model" data-nav>Engagement</a>
     <a href="about.html" class="active">About</a>
+    <a href="index.html#contact-form-section" data-nav>Contact</a>
   </div>
   <div class="nav-right">
     <button class="n-btn" onclick="showToast('Login system launching soon')">Log In</button>
@@ -698,7 +696,7 @@ html { overflow-x: hidden; }
       <div class="manifesto-col">
         <p>It doesn't have to be that way.</p>
         <p>At Simplify.AI, we build custom operational dashboards for business owners who are ready to <strong>stop managing chaos</strong> and start running a real operation.</p>
-        <p>One place for your workflows, your team, your leads, your automations, and your numbers — built around the way you already work, not the way some software company thinks you should.</p>
+        <p>One place for your workflows, your team, your leads, your automations, and your numbers. Built around the way you already work, not the way some software company thinks you should.</p>
       </div>
     </div>
   </div>
@@ -715,7 +713,7 @@ html { overflow-x: hidden; }
     <div class="chaos-item">
       <div class="chaos-x">02</div>
       <div class="chaos-title">Founder Bottleneck</div>
-      <div class="chaos-desc">When the system can't scale, you become the system. Every decision, every update, every fire — manually handled.</div>
+      <div class="chaos-desc">When the system can't scale, you become the system. Every decision, every update, every fire. Manually handled.</div>
     </div>
     <div class="chaos-item">
       <div class="chaos-x">03</div>
@@ -731,7 +729,7 @@ html { overflow-x: hidden; }
     <div class="wwb-text">
       <div class="s-label reveal">02 &nbsp;What We Build</div>
       <h2 class="wwb-h reveal reveal-d1">One Place.<br><em>Everything.</em></h2>
-      <p class="wwb-desc reveal reveal-d2">A custom operational dashboard that connects your entire stack — lead management, automations, reporting, team communication — structured around how your business actually runs.</p>
+      <p class="wwb-desc reveal reveal-d2">A custom operational dashboard that connects your entire stack: lead management, automations, reporting, team communication. Structured around how your business actually runs.</p>
       <ul class="wwb-points reveal reveal-d3">
         <li class="wwb-point"><span class="wwb-point-n">→</span><span>Consolidated lead and pipeline management</span></li>
         <li class="wwb-point"><span class="wwb-point-n">→</span><span>Workflow automations that run without you</span></li>
@@ -757,7 +755,7 @@ html { overflow-x: hidden; }
     The goal was to give your team<br>
     <em>Operational Clarity.</em>
   </p>
-  <div class="pull-quote-attribution reveal reveal-d2">Simplify.AI — Core Mission</div>
+  <div class="pull-quote-attribution reveal reveal-d2">Simplify.AI · Core Mission</div>
 </section>
 
 <!-- ─── ORIGIN ─── -->
@@ -773,7 +771,7 @@ html { overflow-x: hidden; }
     <div class="origin-body reveal reveal-d2">
       <p>We started Simplify.AI after working directly with <strong>growing businesses and creators</strong> who had big ambitions but systems that couldn't keep up.</p>
       <p>What they needed wasn't more apps. They needed <strong>clarity. Structure. A foundation that could scale.</strong></p>
-      <p>Every system we build is designed to actually get used — because a tool nobody touches after week one isn't a solution, it's just another problem.</p>
+      <p>Every system we build is designed to actually get used. Because a tool nobody touches after week one isn't a solution, it's just another problem.</p>
       <p>We believe the right systems create freedom. And freedom is what lets founders focus on the work that actually <strong>moves the needle.</strong></p>
     </div>
     <div class="origin-values reveal reveal-d3">
@@ -804,10 +802,6 @@ html { overflow-x: hidden; }
   <div class="dt-content">
     <div class="dt-header">
       <div>
-        <div class="dt-badge">
-          <div class="dt-badge-dot"></div>
-          Coming Next
-        </div>
         <div class="dt-label">04 &nbsp;Digital Transformation</div>
         <h2 class="dt-h reveal">
           We're Not<br>Stopping At<br><span class="grad">Dashboards.</span>
@@ -815,7 +809,7 @@ html { overflow-x: hidden; }
       </div>
       <div>
         <p class="dt-sub reveal reveal-d1">The next chapter of Simplify.AI is already in motion. We're building out a full digital transformation offering that covers everything a modern business needs to compete and grow.</p>
-        <p class="dt-sub reveal reveal-d2" style="margin-top: 20px;">This isn't about adding more tools to the pile. It's about handing you a business that runs the way it should — with the right presence, the right reach, and the intelligence to hold it all together.</p>
+        <p class="dt-sub reveal reveal-d2" style="margin-top: 20px;">This isn't about adding more tools to the pile. It's about handing you a business that runs the way it should, with the right presence, the right reach, and the intelligence to hold it all together.</p>
       </div>
     </div>
 
@@ -823,19 +817,19 @@ html { overflow-x: hidden; }
       <div class="dt-pillar">
         <div class="dt-pillar-n">01</div>
         <div class="dt-pillar-title">Custom Websites That Convert</div>
-        <div class="dt-pillar-desc">Purpose-built digital presence that doesn't just look good — it turns visitors into pipeline. Designed around your business, not a template.</div>
+        <div class="dt-pillar-desc">Purpose-built digital presence that doesn't just look good. It turns visitors into pipeline. Designed around your business, not a template.</div>
         <div class="dt-pillar-tag">Web &amp; Design</div>
       </div>
       <div class="dt-pillar">
         <div class="dt-pillar-n">02</div>
         <div class="dt-pillar-title">Ad Campaigns That Bring the Right People</div>
-        <div class="dt-pillar-desc">Paid campaigns built with precision targeting, AI-driven copy, and continuous optimisation. Not spray and pray — quality reach that converts.</div>
+        <div class="dt-pillar-desc">Paid campaigns built with precision targeting, AI-driven copy, and continuous optimisation. Not spray and pray. Quality reach that converts.</div>
         <div class="dt-pillar-tag">Growth &amp; Ads</div>
       </div>
       <div class="dt-pillar">
         <div class="dt-pillar-n">03</div>
         <div class="dt-pillar-title">Agentic AI That Runs the Operation</div>
-        <div class="dt-pillar-desc">Intelligent agents that keep the business moving whether you're in the chair or not. Automated, contextual, and always on — your business never sleeps.</div>
+        <div class="dt-pillar-desc">Intelligent agents that keep the business moving whether you're in the chair or not. Automated, contextual, and always on. Your business never sleeps.</div>
         <div class="dt-pillar-tag">AI &amp; Automation</div>
       </div>
     </div>
