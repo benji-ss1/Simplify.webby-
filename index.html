@@ -36,7 +36,7 @@ img { display: block; max-width: 100%; }
   --bg2:   #0d0d0d;
   --bg3:   #141412;
   --fg:    #f0ede8;
-  --muted: #908d89;
+  --muted: #b4b0ac;
   --dim:   #2c2a28;
   --amber: #c8a96e;
   --border: rgba(240,237,232,0.07);
@@ -217,14 +217,14 @@ img { display: block; max-width: 100%; }
 .s-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .s-h {
   font-family: var(--display);
-  font-size: clamp(44px, 6vw, 96px); font-weight: 800; line-height: 0.93;
+  font-size: clamp(36px, 4vw, 64px); font-weight: 800; line-height: 0.95;
   letter-spacing: -0.04em;
 }
 .s-h em { font-style: normal; color: var(--muted); }
 
 /* ─── PLATES SECTION ─── */
 #plates .plates-intro {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 64px;
 }
 .plates-intro-right { font-size: 16px; color: var(--muted); line-height: 1.7; padding-bottom: 4px; }
 .plates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
@@ -241,31 +241,13 @@ img { display: block; max-width: 100%; }
 .plate-card:nth-child(3) { aspect-ratio: 4/3; }
 .plate-card:hover { border-color: var(--amber); transform: translateY(-4px); }
 
-.plate-img-bg {
-  position: absolute;
-  background-image: url('Images/plates.png');
-  background-repeat: no-repeat;
-  filter: invert(1) sepia(0.15) brightness(0.58) contrast(1.2);
+.plate-img-full {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
   transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
 }
-.plate-card:hover .plate-img-bg { transform: scale(1.04); }
-
-/* Crop each panel — tuned for 2-up top / 1 bottom-center composite layout */
-.plate-img-bg.pa {
-  inset: -5%;
-  background-size: 270% auto;
-  background-position: 1% 2%;
-}
-.plate-img-bg.pb {
-  inset: -5%;
-  background-size: 270% auto;
-  background-position: 99% 2%;
-}
-.plate-img-bg.p1 {
-  inset: -5%;
-  background-size: 270% auto;
-  background-position: 50% 99%;
-}
+.plate-card:hover .plate-img-full { transform: scale(1.04); }
 
 /* Gradient mask: heavy at top (hides baked-in label text) and heavy at bottom (shows only my overlay text) */
 .plate-mask {
@@ -1421,7 +1403,7 @@ html { overflow-x: hidden; }
   </div>
   <div class="plates-grid">
     <div class="plate-card reveal reveal-d1">
-      <div class="plate-img-bg pa"></div>
+      <img class="plate-img-full" src="Images/plate-drag.png" alt="Operational Drag" loading="lazy">
       <div class="plate-mask"></div>
       <div class="plate-info">
         <div class="plate-id">Operational Drag</div>
@@ -1429,7 +1411,7 @@ html { overflow-x: hidden; }
       </div>
     </div>
     <div class="plate-card reveal reveal-d2">
-      <div class="plate-img-bg pb"></div>
+      <img class="plate-img-full" src="Images/plate-bottleneck.png" alt="Founder Bottleneck" loading="lazy">
       <div class="plate-mask"></div>
       <div class="plate-info">
         <div class="plate-id">Founder Bottleneck</div>
@@ -1437,7 +1419,7 @@ html { overflow-x: hidden; }
       </div>
     </div>
     <div class="plate-card reveal reveal-d3">
-      <div class="plate-img-bg p1"></div>
+      <img class="plate-img-full" src="Images/plate-solution.png" alt="The Solution" loading="lazy">
       <div class="plate-mask"></div>
       <div class="plate-info">
         <div class="plate-id">The Solution</div>
