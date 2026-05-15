@@ -124,6 +124,8 @@ img { display: block; max-width: 100%; }
 }
 .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav-hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg); margin: 5px 0; }
+.mob-book-demo { display: none; }
+.mob-menu-trigger { display: none; }
 
 /* ─── HERO / MISSION ─── */
 #hero {
@@ -1296,12 +1298,11 @@ html { overflow-x: hidden; }
 
 /* ─── MOBILE NAV ─── */
 .mob-book-demo {
-  display: none; /* desktop hidden */
   font-size: 11px; font-weight: 700; padding: 7px 11px;
   white-space: nowrap; flex-shrink: 0;
 }
 .mob-menu-trigger {
-  display: none; width: 40px; height: 40px; border-radius: 8px;
+  width: 40px; height: 40px; border-radius: 8px;
   background: rgba(240,237,232,0.06); border: 1px solid var(--border2);
   cursor: pointer; align-items: center; justify-content: center;
   flex-shrink: 0; padding: 0; color: var(--fg);
@@ -1844,14 +1845,16 @@ html { overflow-x: hidden; }
     <p class="form-sub reveal reveal-d1">Tell us about your business and what you are trying to solve. We will come back to you within 24 hours.</p>
   </div>
   <form onsubmit="handleFormSubmit(event)" class="reveal">
+    <!-- honeypot: bots fill this, humans never see it -->
+    <input type="text" name="website" id="hp_website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
     <div class="contact-form-grid">
       <div class="form-field">
         <label class="form-label">Name</label>
-        <input type="text" class="form-input" placeholder="Your name" required>
+        <input type="text" id="contactName" class="form-input" placeholder="Your name" maxlength="120" required>
       </div>
       <div class="form-field">
         <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="you@company.com" required>
+        <input type="email" id="contactEmail" class="form-input" placeholder="you@company.com" maxlength="254" required>
       </div>
     </div>
     <div class="form-field form-full" style="margin-bottom: 12px;">
@@ -2203,9 +2206,29 @@ function spawnBots(origin) {
   }
 }
 
+// ── SECURITY HELPERS ──
+function sanitize(str) {
+  return String(str).replace(/[<>"'`&]/g, c => ({'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;','&':'&amp;'}[c])).trim().slice(0, 2000);
+}
+function isValidEmail(email) {
+  return /^[^\s@]{1,64}@[^\s@]{1,253}\.[^\s@]{2,}$/.test(email);
+}
+function checkRateLimit(key, max, windowMs) {
+  const now = Date.now();
+  let record;
+  try { record = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch(e) { record = null; }
+  if (!record || now - record.start > windowMs) { record = { start: now, count: 0 }; }
+  if (record.count >= max) { return { allowed: false, wait: Math.ceil((windowMs - (now - record.start)) / 1000) }; }
+  record.count++;
+  try { sessionStorage.setItem(key, JSON.stringify(record)); } catch(e) {}
+  return { allowed: true };
+}
+
 // ── CONTACT EDITORIAL FORM ──
 function handleEdFormSubmit(e) {
   e.preventDefault();
+  const rl = checkRateLimit('edForm', 3, 5 * 60 * 1000);
+  if (!rl.allowed) { showToast('Too many attempts. Please wait ' + rl.wait + 's.'); return; }
   showToast('Message sent! We will be in touch within 24 hours.');
   e.target.reset();
 }
@@ -2220,6 +2243,13 @@ function handleVerify(btn) {
 }
 function handleFormSubmit(e) {
   e.preventDefault();
+  if (document.getElementById('hp_website') && document.getElementById('hp_website').value) return;
+  const rl = checkRateLimit('contactForm', 3, 5 * 60 * 1000);
+  if (!rl.allowed) { showToast('Too many attempts. Please wait ' + rl.wait + 's.'); return; }
+  const name = sanitize(document.getElementById('contactName') ? document.getElementById('contactName').value : '');
+  const email = sanitize(document.getElementById('contactEmail') ? document.getElementById('contactEmail').value : '');
+  if (name.length < 2) { showToast('Please enter a valid name.'); return; }
+  if (!isValidEmail(email)) { showToast('Please enter a valid email address.'); return; }
   showToast('Message sent! We will be in touch within 24 hours.');
   e.target.reset();
   document.getElementById('charCount').textContent = '0';
@@ -2347,6 +2377,12 @@ function closeLoginModal(e) {
 }
 function handleLogin(e) {
   e.preventDefault();
+  // Brute-force protection: max 5 attempts, 30s lockout
+  const rl = checkRateLimit('loginAttempts', 5, 30 * 1000);
+  if (!rl.allowed) {
+    showToast('Too many sign-in attempts. Try again in ' + rl.wait + 's.');
+    return;
+  }
   const status = document.getElementById('loginStatus');
   status.classList.add('show');
   setTimeout(() => status.classList.remove('show'), 3400);
@@ -2374,10 +2410,14 @@ function showPhaseMessageForm() {
   document.getElementById('phaseMsgForm').style.display = 'flex';
 }
 function submitPhaseMessage() {
-  const name = document.getElementById('phaseName').value.trim();
-  const email = document.getElementById('phaseEmail').value.trim();
-  const msg = document.getElementById('phaseMessage').value.trim();
-  if (!name || !email || !msg) { showToast('Please fill in all fields'); return; }
+  const rl = checkRateLimit('phaseForm', 3, 5 * 60 * 1000);
+  if (!rl.allowed) { showToast('Too many attempts. Please wait ' + rl.wait + 's.'); return; }
+  const name = sanitize(document.getElementById('phaseName').value);
+  const email = sanitize(document.getElementById('phaseEmail').value);
+  const msg = sanitize(document.getElementById('phaseMessage').value);
+  if (!name || name.length < 2) { showToast('Please enter your name.'); return; }
+  if (!isValidEmail(email)) { showToast('Please enter a valid email address.'); return; }
+  if (!msg || msg.length < 5) { showToast('Please fill in all fields'); return; }
   document.getElementById('phaseMsgForm').style.display = 'none';
   document.getElementById('phaseSent').style.display = 'block';
 }
