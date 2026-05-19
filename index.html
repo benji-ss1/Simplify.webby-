@@ -2366,11 +2366,23 @@ document.addEventListener('keydown', e => {
 
 // ── CALENDLY ──
 function openCalendly() {
-  if (typeof Calendly !== 'undefined') {
-    Calendly.initPopupWidget({ url: 'https://calendly.com/benj-sanusi/discovery-call' });
-  } else {
-    window.open('https://calendly.com/benj-sanusi/discovery-call', '_blank');
+  var url = 'https://calendly.com/benj-sanusi/discovery-call';
+  if (typeof Calendly !== 'undefined' && typeof Calendly.initPopupWidget === 'function') {
+    Calendly.initPopupWidget({ url: url });
+    return false;
   }
+  // Script not ready yet — retry up to 10× then fall back to new tab
+  var attempts = 0;
+  var retry = setInterval(function() {
+    attempts++;
+    if (typeof Calendly !== 'undefined' && typeof Calendly.initPopupWidget === 'function') {
+      clearInterval(retry);
+      Calendly.initPopupWidget({ url: url });
+    } else if (attempts >= 10) {
+      clearInterval(retry);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  }, 200);
   return false;
 }
 
