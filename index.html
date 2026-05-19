@@ -2244,28 +2244,29 @@ function handleVerify(btn) {
 }
 async function handleFormSubmit(e) {
   e.preventDefault();
+  // Honeypot — silent bot block
   if (document.getElementById('hp_website') && document.getElementById('hp_website').value) return;
-  const rl = checkRateLimit('contactForm', 3, 5 * 60 * 1000);
-  if (!rl.allowed) { showToast('Too many attempts. Please wait ' + rl.wait + 's.'); return; }
-  const name = sanitize(document.getElementById('contactName') ? document.getElementById('contactName').value : '');
-  const email = sanitize(document.getElementById('contactEmail') ? document.getElementById('contactEmail').value : '');
-  const message = (document.getElementById('msgTextarea') ? document.getElementById('msgTextarea').value : '').trim();
-  if (name.length < 2) { showToast('Please enter a valid name.'); return; }
+  const name    = (document.getElementById('contactName')  ? document.getElementById('contactName').value  : '').trim();
+  const email   = (document.getElementById('contactEmail') ? document.getElementById('contactEmail').value : '').trim();
+  const message = (document.getElementById('msgTextarea')  ? document.getElementById('msgTextarea').value  : '').trim();
+  if (name.length < 2)      { showToast('Please enter your name.');            return; }
   if (!isValidEmail(email)) { showToast('Please enter a valid email address.'); return; }
-  if (message.length < 5) { showToast('Please enter a message.'); return; }
+  if (message.length < 5)   { showToast('Please enter a message.');             return; }
   const btn = e.target.querySelector('[type="submit"]');
-  const orig = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true;
+  const orig = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
   try {
     const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: '7c7f573e-48e1-4a52-a107-3d82dbca7f10',
-        subject: 'New enquiry from ' + name,
-        from_name: name,
-        email: email,
-        message: message,
-        botcheck: ''
+        subject:    'New enquiry from ' + name,
+        from_name:  name,
+        email:      email,
+        message:    message,
+        replyto:    email
       })
     });
     const data = await res.json();
@@ -2277,9 +2278,11 @@ async function handleFormSubmit(e) {
       throw new Error(data.message || 'failed');
     }
   } catch (err) {
-    showToast('Could not send — email us at contact@thesimplifyai.org');
+    console.error('Form error:', err);
+    showToast('Could not send — please email contact@thesimplifyai.org directly.');
   } finally {
-    btn.textContent = orig; btn.disabled = false;
+    btn.textContent = orig;
+    btn.disabled = false;
   }
 }
 
