@@ -2278,8 +2278,8 @@ async function handleFormSubmit(e) {
       throw new Error(data.message || 'failed');
     }
   } catch (err) {
-    console.error('Form error:', err);
-    showToast('Could not send — please email contact@thesimplifyai.org directly.');
+    console.error('[Contact form] submission failed:', err);
+    showToast('Something went wrong. Please try again or email contact@thesimplifyai.org');
   } finally {
     btn.textContent = orig;
     btn.disabled = false;
